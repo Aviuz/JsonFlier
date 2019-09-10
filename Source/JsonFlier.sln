@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonFlier", "JsonFlier.csproj", "{650C83E4-CD77-4A96-8B14-C2AFC5E1A666}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{650C83E4-CD77-4A96-8B14-C2AFC5E1A666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{650C83E4-CD77-4A96-8B14-C2AFC5E1A666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{650C83E4-CD77-4A96-8B14-C2AFC5E1A666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{650C83E4-CD77-4A96-8B14-C2AFC5E1A666}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6CB7DCA-4C98-4E0C-B819-4ACF273797CE}
+	EndGlobalSection
+EndGlobal
