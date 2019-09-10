@@ -1,4 +1,5 @@
 ﻿using JsonFlier.UserControls.Tabs;
+using JsonFlier.UserControls.Tabs.Base;
 using Microsoft.Win32;
 using System.IO;
 using System.Windows;
@@ -32,10 +33,6 @@ namespace JsonFlier
             }
         }
 
-        private void OpenNewTab(TabItem tab)
-        {
-            TabControl.Items.Add(tab);
-            tab.Focus();
-        }
+        private void OpenNewTab(CloseableTab tab) => TabControl.Open(tab);
     }
 }

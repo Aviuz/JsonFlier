@@ -71,6 +71,7 @@
       <DependentUpon>CloseableHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Tabs\Base\CloseableTab.cs" />
+    <Compile Include="UserControls\ExtendedTabControl.cs" />
     <Compile Include="UserControls\Tabs\TabContents\JsonArray.xaml.cs">
       <DependentUpon>JsonArray.xaml</DependentUpon>
     </Compile>
@@ -79,6 +80,9 @@
     </Compile>
     <Compile Include="UserControls\Tabs\JsonArray.cs" />
     <Compile Include="UserControls\Tabs\PlainText.cs" />
+    <Compile Include="UserControls\WelcomePage.xaml.cs">
+      <DependentUpon>WelcomePage.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -100,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Tabs\TabContents\PlainText.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\WelcomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

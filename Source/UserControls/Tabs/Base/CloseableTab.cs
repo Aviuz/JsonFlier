@@ -8,6 +8,8 @@ namespace JsonFlier.UserControls.Tabs.Base
 {
     public class CloseableTab : TabItem
     {
+        public event EventHandler OnClosed;
+
         public string Title
         {
             get
@@ -85,6 +87,10 @@ namespace JsonFlier.UserControls.Tabs.Base
         void button_close_Click(object sender, RoutedEventArgs e)
         {
             ((TabControl)this.Parent).Items.Remove(this);
+            if(OnClosed != null)
+            {
+                OnClosed.Invoke(this, new EventArgs());
+            }
         }
 
         // Label SizeChanged - When the Size of the Label changes (due to setting the Title) set position of button properly

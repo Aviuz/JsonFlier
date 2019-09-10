@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JsonFlier"
+        xmlns:uc="clr-namespace:JsonFlier.UserControls"
         xmlns:tabs="clr-namespace:JsonFlier.UserControls.Tabs.Base"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
@@ -16,11 +17,7 @@
                 <MenuItem Header="New" Click="MenuItem_Click" />
             </MenuItem>
         </Menu>
-        <TabControl x:Name="TabControl">
-            <tabs:CloseableTab Title="TabItem" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" Width="65">
-                <Grid Background="#FFE5E5E5"/>
-            </tabs:CloseableTab>
-        </TabControl>
+        <uc:ExtendedTabControl x:Name="TabControl" />
 
     </DockPanel>
 </Window>
