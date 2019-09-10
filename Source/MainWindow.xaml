@@ -7,17 +7,18 @@
         xmlns:uc="clr-namespace:JsonFlier.UserControls"
         xmlns:tabs="clr-namespace:JsonFlier.UserControls.Tabs.Base"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="File" >
-                <MenuItem Header="Open" Click="Open_Click"/>
-            </MenuItem>
-            <MenuItem Header="Tab" >
-                <MenuItem Header="New" Click="MenuItem_Click" />
-            </MenuItem>
-        </Menu>
-        <uc:ExtendedTabControl x:Name="TabControl" />
-
-    </DockPanel>
+        Title="Json Flier" Height="450" Width="800">
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="File" >
+                    <MenuItem Header="Open" Click="Open_Click" />
+                </MenuItem>
+                <MenuItem Header="Tab" >
+                    <MenuItem Header="New" Click="MenuItem_Click"/>
+                </MenuItem>
+            </Menu>
+            <uc:ExtendedTabControl x:Name="TabControl" />
+        </DockPanel>
+    </Grid>
 </Window>
