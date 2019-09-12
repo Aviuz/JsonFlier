@@ -1,6 +1,8 @@
 ﻿using JsonFlier.UserControls.Tabs;
 using JsonFlier.UserControls.Tabs.Base;
 using Microsoft.Win32;
+using Newtonsoft.Json.Linq;
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,24 +17,20 @@ namespace JsonFlier
         public MainWindow()
         {
             InitializeComponent();
+
+            FileManager = new FileManager(TabControl);
+
+            BindEventHandlers();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        public FileManager FileManager { get; set; }
+
+        private void BindEventHandlers()
         {
-            var ti = new PlainText("test");
-            OpenNewTab(ti);
+            menuItemOpen.Click += Open_Click;
+            TabControl.OnOpenButtonClick += Open_Click;
         }
 
-        private void Open_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new OpenFileDialog();
-            if (dialog.ShowDialog() == true)
-            {
-                var text = File.ReadAllText(dialog.FileName);
-                OpenNewTab(new PlainText(text));
-            }
-        }
-
-        private void OpenNewTab(CloseableTab tab) => TabControl.Open(tab);
+        private void Open_Click(object sender, RoutedEventArgs e) => FileManager.ShowOpenFileDialog();
     }
 }

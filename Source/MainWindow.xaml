@@ -12,10 +12,7 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File" >
-                    <MenuItem Header="Open" Click="Open_Click" />
-                </MenuItem>
-                <MenuItem Header="Tab" >
-                    <MenuItem Header="New" Click="MenuItem_Click"/>
+                    <MenuItem x:Name="menuItemOpen" Header="Open" />
                 </MenuItem>
             </Menu>
             <uc:ExtendedTabControl x:Name="TabControl" />

@@ -5,8 +5,10 @@ namespace JsonFlier.UserControls.Tabs
 {
     public class PlainText : CloseableTab
     {
-        public PlainText(string text)
+        public PlainText(string title, string text)
         {
+            Title = title;
+
             var content = new TabContents.PlainText();
 
             content.TextBlock.Text = text;
