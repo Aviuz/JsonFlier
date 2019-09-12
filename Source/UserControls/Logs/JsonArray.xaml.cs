@@ -14,8 +14,19 @@ namespace JsonFlier.UserControls.Logs
 
             for (int i = 0; i < logArray.Count; i++)
             {
-                logArrayControl.AppendUserControl(new LogEntry(logArray[i] as JObject));
+                AppendUserControl(new LogEntry(logArray[i] as JObject));
             }
+        }
+
+        private void AppendUserControl(UserControl userControl)
+        {
+            DockPanel.SetDock(userControl, Dock.Top);
+            MainDockPanel.Children.Add(userControl);
+        }
+
+        public void Refresh()
+        {
+            MainDockPanel.Children.Clear();
         }
     }
 }

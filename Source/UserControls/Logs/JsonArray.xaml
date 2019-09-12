@@ -6,7 +6,10 @@
              xmlns:local="clr-namespace:JsonFlier.UserControls.Logs"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
-        <local:LogArrayControl x:Name="logArrayControl"/>
+    <Grid Background="White">
+        <ScrollViewer>
+            <DockPanel Name="MainDockPanel">
+            </DockPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

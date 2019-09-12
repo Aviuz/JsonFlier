@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace JsonFlier.UserControls.Logs
 {
@@ -30,6 +31,23 @@ namespace JsonFlier.UserControls.Logs
                 if (isExpandable != value)
                 {
                     treeView.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+                    interactionRectangle.Cursor = value ? Cursors.Hand : null;
+
+
+                    if (value)
+                    {
+                        backgroundRectangle.Stroke = new SolidColorBrush(Color.FromRgb(0x30, 0x30, 0x30));
+                        interactionRectangle.MouseLeftButtonDown += InteractionRectangle_MouseLeftButtonDown;
+                        interactionRectangle.MouseEnter += InteractionRectangle_MouseEnter;
+                        interactionRectangle.MouseLeave += InteractionRectangle_MouseLeave;
+                    }
+                    else
+                    {
+                        backgroundRectangle.Stroke = null;
+                        interactionRectangle.MouseLeftButtonDown -= InteractionRectangle_MouseLeftButtonDown;
+                        interactionRectangle.MouseEnter -= InteractionRectangle_MouseEnter;
+                        interactionRectangle.MouseLeave -= InteractionRectangle_MouseLeave;
+                    }
                     isExpandable = value;
                 }
             }
@@ -58,7 +76,12 @@ namespace JsonFlier.UserControls.Logs
 
         private void LoadJsonObject(JObject logEntry)
         {
-            LogTitle.Text = logEntry["title"].ToString();
+            SetIcon(logEntry);
+            SetColor(logEntry);
+
+            titleBox.Text = logEntry["title"].ToString();
+            dateBox.Text = logEntry["date"].ToString();
+            timeBox.Text = logEntry["time"].ToString();
 
             if (logEntry["data"] is null)
             {
@@ -128,9 +151,86 @@ namespace JsonFlier.UserControls.Logs
             }
         }
 
-        private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void SetIcon(JObject logEntry)
+        {
+            switch (logEntry["dataType"]?.ToString())
+            {
+                case "Text":
+
+                    if (logEntry["data"] != null)
+                    {
+                        textImage.Visibility = Visibility.Visible;
+                        exceptionImage.Visibility = Visibility.Collapsed;
+                        objectImage.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        textImage.Visibility = Visibility.Hidden;
+                        exceptionImage.Visibility = Visibility.Collapsed;
+                        objectImage.Visibility = Visibility.Collapsed;
+                    }
+                    break;
+
+                case "Exception":
+                    textImage.Visibility = Visibility.Collapsed;
+                    exceptionImage.Visibility = Visibility.Visible;
+                    objectImage.Visibility = Visibility.Collapsed;
+                    break;
+
+                case "Object":
+                    textImage.Visibility = Visibility.Collapsed;
+                    exceptionImage.Visibility = Visibility.Collapsed;
+                    objectImage.Visibility = Visibility.Visible;
+                    break;
+
+                default:
+                    textImage.Visibility = Visibility.Collapsed;
+                    exceptionImage.Visibility = Visibility.Collapsed;
+                    objectImage.Visibility = Visibility.Collapsed;
+                    break;
+            }
+        }
+
+        private void SetColor(JObject logEntry)
+        {
+            switch (logEntry["category"]?.ToString())
+            {
+                case "Critical":
+                    backgroundRectangle.Fill = new SolidColorBrush(Color.FromRgb(0xf5, 0xb8, 0xb8));
+                    break;
+
+                case "Warning":
+                    backgroundRectangle.Fill = new SolidColorBrush(Color.FromRgb(0xff, 0xf9, 0xc2));
+                    break;
+
+                case "Info":
+                    backgroundRectangle.Fill = new SolidColorBrush(Color.FromRgb(0xff, 0xff, 0xff));
+                    break;
+
+                case "Trace":
+                    backgroundRectangle.Fill = new SolidColorBrush(Color.FromRgb(0xff, 0xff, 0xff));
+                    break;
+
+                default:
+                    backgroundRectangle.Fill = new SolidColorBrush(Colors.White);
+                    break;
+            }
+            detailsRectangle.Fill = backgroundRectangle.Fill;
+        }
+
+        private void InteractionRectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Expanded = !Expanded;
+        }
+
+        private void InteractionRectangle_MouseEnter(object sender, MouseEventArgs e)
+        {
+            backgroundRectangle.Opacity = 0.8;
+        }
+
+        private void InteractionRectangle_MouseLeave(object sender, MouseEventArgs e)
+        {
+            backgroundRectangle.Opacity = 1;
         }
     }
 }
