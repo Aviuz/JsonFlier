@@ -6,7 +6,7 @@ using System;
 
 namespace JsonFlier.UserControls.Tabs.Base
 {
-    public class CloseableTab : TabItem
+    public partial class CloseableTab : TabItem
     {
         public event EventHandler OnClosed;
 
@@ -25,6 +25,8 @@ namespace JsonFlier.UserControls.Tabs.Base
 
         public CloseableTab()
         {
+            InitializeComponent();
+
             // Assign the usercontrol to the tab header
             var closableTabHeader = new CloseableHeader();
             Header = closableTabHeader;

@@ -78,8 +78,10 @@
     <Compile Include="UserControls\Tabs\Base\CloseableHeader.xaml.cs">
       <DependentUpon>CloseableHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tabs\Base\CloseableTab.cs" />
     <Compile Include="UserControls\ExtendedTabControl.cs" />
+    <Compile Include="UserControls\Tabs\Base\CloseableTab.xaml.cs">
+      <DependentUpon>CloseableTab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Tabs\TabContents\JsonArray.xaml.cs">
       <DependentUpon>JsonArray.xaml</DependentUpon>
     </Compile>
@@ -114,6 +116,10 @@
     <Page Include="UserControls\Tabs\Base\CloseableHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tabs\Base\CloseableTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Tabs\TabContents\JsonArray.xaml">
       <SubType>Designer</SubType>
@@ -155,7 +161,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AppIcon.ico" />
   </ItemGroup>
