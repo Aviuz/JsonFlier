@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace JsonFlier.UserControls
+namespace JsonFlier.UserControls.Logs
 {
     /// <summary>
     /// Interaction logic for LogArrayControl.xaml

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace JsonFlier.UserControls.Tabs.Base
+namespace JsonFlier.UserControls.TabsControl
 {
     /// <summary>
     /// Interaction logic for CloseableHeader.xaml

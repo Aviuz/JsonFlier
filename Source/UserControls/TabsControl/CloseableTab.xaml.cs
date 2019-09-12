@@ -4,7 +4,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System;
 
-namespace JsonFlier.UserControls.Tabs.Base
+namespace JsonFlier.UserControls.TabsControl
 {
     public partial class CloseableTab : TabItem
     {
@@ -14,12 +14,12 @@ namespace JsonFlier.UserControls.Tabs.Base
         {
             get
             {
-                return ((CloseableHeader)this.Header).label_TabTitle.Content as string;
+                return ((CloseableHeader)this.Header).label_TabTitle.Text;
             }
 
             set
             {
-                ((CloseableHeader)this.Header).label_TabTitle.Content = value;
+                ((CloseableHeader)this.Header).label_TabTitle.Text = value;
             }
         }
 

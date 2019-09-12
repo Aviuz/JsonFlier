@@ -3,9 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:JsonFlier"
-        xmlns:uc="clr-namespace:JsonFlier.UserControls"
-        xmlns:tabs="clr-namespace:JsonFlier.UserControls.Tabs.Base"
+        xmlns:tabsControl="clr-namespace:JsonFlier.UserControls.TabsControl"
         mc:Ignorable="d"
         Title="Json Flier" Height="450" Width="800">
     <Grid>
@@ -15,7 +13,7 @@
                     <MenuItem x:Name="menuItemOpen" Header="Open" />
                 </MenuItem>
             </Menu>
-            <uc:ExtendedTabControl x:Name="TabControl" />
+            <tabsControl:ExtendedTabControl x:Name="TabControl" />
         </DockPanel>
     </Grid>
 </Window>

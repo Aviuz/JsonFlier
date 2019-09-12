@@ -1,6 +1,4 @@
-﻿using JsonFlier.UserControls;
-using JsonFlier.UserControls.Tabs;
-using JsonFlier.UserControls.Tabs.Base;
+﻿using JsonFlier.UserControls.TabsControl;
 using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
 using System.IO;
@@ -36,14 +34,12 @@ namespace JsonFlier
             try
             {
                 logsArray = JArray.Parse(text);
-                OpenNewTab(new JsonArray(title, logsArray));
+                TabControl.OpenJArray(title, logsArray);
             }
             catch
             {
-                OpenNewTab(new PlainText(title, text));
+                TabControl.OpenSimpleText(title, text);
             }
         }
-
-        public void OpenNewTab(CloseableTab tab) => TabControl.Open(tab);
     }
 }

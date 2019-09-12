@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace JsonFlier.UserControls
+namespace JsonFlier.UserControls.Logs
 {
     /// <summary>
     /// Interaction logic for LogEntry.xaml

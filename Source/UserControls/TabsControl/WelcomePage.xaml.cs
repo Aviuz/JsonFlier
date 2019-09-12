@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace JsonFlier.UserControls.Tabs.TabContents
+namespace JsonFlier.UserControls.TabsControl
 {
     /// <summary>
-    /// Interaction logic for JsonArray.xaml
+    /// Interaction logic for WelcomePage.xaml
     /// </summary>
-    public partial class JsonArray : UserControl
+    public partial class WelcomePage : UserControl
     {
-        public JsonArray()
+        public WelcomePage()
         {
             InitializeComponent();
         }

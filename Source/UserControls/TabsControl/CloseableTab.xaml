@@ -1,18 +1,15 @@
-﻿<TabItem x:Class="JsonFlier.UserControls.Tabs.Base.CloseableTab"
+﻿<TabItem x:Class="JsonFlier.UserControls.TabsControl.CloseableTab"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:JsonFlier.UserControls.Tabs.Base"
              mc:Ignorable="d" d:DesignWidth="81" Margin="0" Height="23">
     <TabItem.Template>
         <ControlTemplate TargetType="TabItem">
             <Grid Name="Panel">
                 <ContentPresenter x:Name="ContentSite"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
                                         ContentSource="Header"
-                                        Margin="10,2"/>
+                                        Margin="0"/>
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsSelected" Value="True">

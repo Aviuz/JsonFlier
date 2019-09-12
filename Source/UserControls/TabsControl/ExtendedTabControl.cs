@@ -1,9 +1,10 @@
-﻿using JsonFlier.UserControls.Tabs.Base;
+﻿using JsonFlier.UserControls.Logs;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace JsonFlier.UserControls
+namespace JsonFlier.UserControls.TabsControl
 {
     public class ExtendedTabControl : UserControl
     {
@@ -22,8 +23,14 @@ namespace JsonFlier.UserControls
             Content = welcomePage;
         }
 
-        public void Open(CloseableTab tab)
+        public void OpenSimpleText(string title, string text) => Open(title, new PlainText(text));
+
+        public void OpenJArray(string title, JArray jArray) => Open(title, new JsonArray(jArray));
+
+        public void Open(string title, UserControl userControl)
         {
+            var tab = new CloseableTab() { Title = title, Content = userControl };
+
             if (Content == welcomePage)
             {
                 Content = tabControl;
@@ -35,7 +42,7 @@ namespace JsonFlier.UserControls
             tab.Focus();
         }
 
-        public void OnTabClosed(object sender, EventArgs args)
+        private void OnTabClosed(object sender, EventArgs args)
         {
             if (tabControl.Items.Count == 0)
             {

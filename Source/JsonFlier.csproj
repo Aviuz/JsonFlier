@@ -69,28 +69,26 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="FileManager.cs" />
-    <Compile Include="UserControls\LogArrayControl.xaml.cs">
+    <Compile Include="UserControls\Logs\LogArrayControl.xaml.cs">
       <DependentUpon>LogArrayControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\LogEntry.xaml.cs">
+    <Compile Include="UserControls\Logs\LogEntry.xaml.cs">
       <DependentUpon>LogEntry.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tabs\Base\CloseableHeader.xaml.cs">
+    <Compile Include="UserControls\TabsControl\CloseableHeader.xaml.cs">
       <DependentUpon>CloseableHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ExtendedTabControl.cs" />
-    <Compile Include="UserControls\Tabs\Base\CloseableTab.xaml.cs">
+    <Compile Include="UserControls\TabsControl\ExtendedTabControl.cs" />
+    <Compile Include="UserControls\TabsControl\CloseableTab.xaml.cs">
       <DependentUpon>CloseableTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tabs\TabContents\JsonArray.xaml.cs">
+    <Compile Include="UserControls\Logs\JsonArray.xaml.cs">
       <DependentUpon>JsonArray.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tabs\TabContents\PlainText.xaml.cs">
+    <Compile Include="UserControls\Logs\PlainText.xaml.cs">
       <DependentUpon>PlainText.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Tabs\JsonArray.cs" />
-    <Compile Include="UserControls\Tabs\PlainText.cs" />
-    <Compile Include="UserControls\WelcomePage.xaml.cs">
+    <Compile Include="UserControls\TabsControl\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -105,31 +103,31 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControls\LogArrayControl.xaml">
+    <Page Include="UserControls\Logs\LogArrayControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\LogEntry.xaml">
+    <Page Include="UserControls\Logs\LogEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tabs\Base\CloseableHeader.xaml">
+    <Page Include="UserControls\TabsControl\CloseableHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tabs\Base\CloseableTab.xaml">
+    <Page Include="UserControls\TabsControl\CloseableTab.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\Tabs\TabContents\JsonArray.xaml">
+    <Page Include="UserControls\Logs\JsonArray.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Tabs\TabContents\PlainText.xaml">
+    <Page Include="UserControls\Logs\PlainText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\WelcomePage.xaml">
+    <Page Include="UserControls\TabsControl\WelcomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,7 +160,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\close.png" />
+    <EmbeddedResource Include="Resources\close.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AppIcon.ico" />

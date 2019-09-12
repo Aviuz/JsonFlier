@@ -1,6 +1,4 @@
-﻿using JsonFlier.UserControls.Tabs;
-using JsonFlier.UserControls.Tabs.Base;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
