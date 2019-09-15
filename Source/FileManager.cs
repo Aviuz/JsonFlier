@@ -25,16 +25,16 @@ namespace JsonFlier
 
         public void OpenFile(string path)
         {
-            OpenText(Path.GetFileName(path), File.ReadAllText(path));
+            OpenText(Path.GetFileName(path), File.ReadAllText(path), path);
         }
 
-        public void OpenText(string title, string text)
+        public void OpenText(string title, string text, string fileOrigin = null)
         {
             JArray logsArray;
             try
             {
                 logsArray = JArray.Parse(text);
-                TabControl.OpenJArray(title, logsArray);
+                TabControl.OpenJArray(title, logsArray, fileOrigin);
             }
             catch
             {

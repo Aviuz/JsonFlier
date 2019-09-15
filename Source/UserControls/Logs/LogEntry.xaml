@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" >
-    <Grid  Margin="10 1 10 1" MinWidth="100">
+    <Grid  Margin="10 0 10 1" MinWidth="100">
         <Grid Name="ExpandGrid">
             <Rectangle x:Name="detailsRectangle" RadiusX="5" RadiusY="5" Opacity="0.5">
                 <Rectangle.Fill>
@@ -21,14 +21,14 @@
             </Grid>
         </Grid>
         <Grid Height="21" VerticalAlignment="Top">
-            <Rectangle x:Name="backgroundRectangle" Stroke="#FF303030" RadiusX="5" RadiusY="5" Fill="#FFFFF9C2"/>
+            <Rectangle x:Name="backgroundRectangle" Stroke="#00303030" Fill="#FFFFF9C2"/>
             <DockPanel Margin="3,0">
                 <Image DockPanel.Dock="Left" Name="objectImage" Source="pack://siteoforigin:,,,/Resources/cube.png" Height="16" Margin="2,0"/>
                 <Image DockPanel.Dock="Left" Name="exceptionImage" Source="pack://siteoforigin:,,,/Resources/exception.png" Height="16" Margin="2,0"/>
                 <Image DockPanel.Dock="Left" Name="textImage" Source="pack://siteoforigin:,,,/Resources/text.png" Height="16" Margin="2,0"/>
                 <TextBox DockPanel.Dock="Left" Name="dateBox" Text="01.01.2019" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0" MaxLines="1" IsReadOnly="True" Foreground="#FF343434" FontSize="14" FontFamily="Segoe UI Light"/>
                 <TextBox DockPanel.Dock="Left" Name="timeBox" Text="11:11:00" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0" MaxLines="1" IsReadOnly="True" Foreground="Black" FontFamily="Segoe UI Semibold"/>
-                <TextBox DockPanel.Dock="Left" Name="titleBox" Text="Log Title" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0" MaxLines="1" IsReadOnly="True" Foreground="Black" FontSize="14"/>
+                <TextBox DockPanel.Dock="Left" Name="titleBox" Text="Log Title" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0" MaxLines="1" IsReadOnly="True" Foreground="Black" FontSize="14" FontWeight="Bold"/>
             </DockPanel>
             <Rectangle x:Name="interactionRectangle" Fill="#00000000" MouseLeftButtonDown="InteractionRectangle_MouseLeftButtonDown" Cursor="Hand" MouseEnter="InteractionRectangle_MouseEnter" MouseLeave="InteractionRectangle_MouseLeave"/>
         </Grid>

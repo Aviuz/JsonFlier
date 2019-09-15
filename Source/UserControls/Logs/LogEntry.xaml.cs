@@ -12,6 +12,7 @@ namespace JsonFlier.UserControls.Logs
     public partial class LogEntry : UserControl
     {
         private bool isExpandable = true;
+        private bool isTrace = false;
         private bool expanded = true;
 
         public LogEntry(JObject logEntry)
@@ -36,7 +37,8 @@ namespace JsonFlier.UserControls.Logs
 
                     if (value)
                     {
-                        backgroundRectangle.Stroke = new SolidColorBrush(Color.FromRgb(0x30, 0x30, 0x30));
+                        //backgroundRectangle.Stroke = new SolidColorBrush(Color.FromRgb(0x30, 0x30, 0x30));
+                        titleBox.FontWeight = FontWeights.Bold;
                         interactionRectangle.MouseLeftButtonDown += InteractionRectangle_MouseLeftButtonDown;
                         interactionRectangle.MouseEnter += InteractionRectangle_MouseEnter;
                         interactionRectangle.MouseLeave += InteractionRectangle_MouseLeave;
@@ -44,11 +46,34 @@ namespace JsonFlier.UserControls.Logs
                     else
                     {
                         backgroundRectangle.Stroke = null;
+                        titleBox.FontWeight = FontWeights.Normal;
                         interactionRectangle.MouseLeftButtonDown -= InteractionRectangle_MouseLeftButtonDown;
                         interactionRectangle.MouseEnter -= InteractionRectangle_MouseEnter;
                         interactionRectangle.MouseLeave -= InteractionRectangle_MouseLeave;
                     }
                     isExpandable = value;
+                }
+            }
+        }
+
+        public bool IsTrace
+        {
+            get => isTrace;
+            set {
+                if(isTrace != value)
+                {
+                    if (value)
+                    {
+                        titleBox.Foreground = new SolidColorBrush( Color.FromRgb(0x50, 0x50, 0x50));
+                        titleBox.FontStyle = FontStyles.Italic;
+                    }
+                    else
+                    {
+                        titleBox.Foreground = new SolidColorBrush( Colors.Black);
+                        titleBox.FontStyle = FontStyles.Normal;
+                    }
+
+                    isTrace = value;
                 }
             }
         }
@@ -82,6 +107,8 @@ namespace JsonFlier.UserControls.Logs
             titleBox.Text = logEntry["title"].ToString();
             dateBox.Text = logEntry["date"].ToString();
             timeBox.Text = logEntry["time"].ToString();
+
+            IsTrace = logEntry["category"]?.ToString() == "Trace";
 
             if (logEntry["data"] is null)
             {

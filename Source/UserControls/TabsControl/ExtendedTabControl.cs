@@ -25,7 +25,7 @@ namespace JsonFlier.UserControls.TabsControl
 
         public void OpenSimpleText(string title, string text) => Open(title, new PlainText(text));
 
-        public void OpenJArray(string title, JArray jArray) => Open(title, new JsonArray(jArray));
+        public void OpenJArray(string title, JArray jArray, string fileOrigin = null) => Open(title, new JsonArray(jArray, fileOrigin));
 
         public void Open(string title, UserControl userControl)
         {

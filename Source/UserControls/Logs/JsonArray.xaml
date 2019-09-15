@@ -4,12 +4,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:JsonFlier.UserControls.Logs"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
+             d:DesignHeight="450" d:DesignWidth="800" Margin="0" >
+    <DockPanel Background="White">
+        <Grid DockPanel.Dock="Top" Background="#FFE9F9FD">
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border BorderBrush="#FF303030">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Button x:Name="buttonRefresh" Click="ButtonRefresh_Click">
+                            <Image Source="pack://siteoforigin:,,,/Resources/reload.png" Height="16" />
+                        </Button>
+                        <Grid Width="2"/>
+                        <Button x:Name="buttonToday" Click="ButtonToday_Click">
+                            <Image Source="pack://siteoforigin:,,,/Resources/calendar.png" Height="16" />
+                        </Button>
+                    </StackPanel>
+                </Border>
+                <StackPanel Orientation="Horizontal" Margin="5,2" VerticalAlignment="Center">
+                    <TextBlock Text="From:"/>
+                    <Grid Width="10"/>
+                    <xctk:DateTimePicker x:Name="dateTimePickerStart" Format="Custom" FormatString="dd.MM.yy HH:mm" MinWidth="120" ValueChanged="DateTimePickerStart_ValueChanged"/>
+                    <Button Click="Button_Click">
+                        <Image Source="pack://siteoforigin:,,,/Resources/close.png" Height="12" />
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5,2">
+                    <TextBlock Text="To:"/>
+                    <Grid Width="10"/>
+                    <xctk:DateTimePicker x:Name="dateTimePickerEnd" Format="Custom" FormatString="dd.MM.yy HH:mm" MinWidth="120" ValueChanged="DateTimePickerEnd_ValueChanged"/>
+                    <Button Click="Button_Click_1">
+                        <Image Source="pack://siteoforigin:,,,/Resources/close.png" Height="12" />
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
         <ScrollViewer>
             <DockPanel Name="MainDockPanel">
             </DockPanel>
         </ScrollViewer>
-    </Grid>
+    </DockPanel>
 </UserControl>
