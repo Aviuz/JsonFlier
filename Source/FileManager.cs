@@ -7,10 +7,7 @@ namespace JsonFlier
 {
     public class FileManager
     {
-        public FileManager(ExtendedTabControl extendedTabControl)
-        {
-            TabControl = extendedTabControl;
-        }
+        public FileManager() { }
 
         public ExtendedTabControl TabControl { get; set; }
 
@@ -23,9 +20,12 @@ namespace JsonFlier
             }
         }
 
-        public void OpenFile(string path)
+        public void OpenFile(string path, string fileName = null)
         {
-            OpenText(Path.GetFileName(path), File.ReadAllText(path), path);
+            if (string.IsNullOrWhiteSpace(fileName))
+                fileName = Path.GetFileName(path);
+
+            OpenText(fileName, File.ReadAllText(path), path);
         }
 
         public void OpenText(string title, string text, string fileOrigin = null)

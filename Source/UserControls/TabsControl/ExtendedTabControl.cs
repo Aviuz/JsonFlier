@@ -11,8 +11,6 @@ namespace JsonFlier.UserControls.TabsControl
         private WelcomePage welcomePage;
         private TabControl tabControl;
 
-        public event RoutedEventHandler OnOpenButtonClick;
-
         public ExtendedTabControl()
         {
             welcomePage = new WelcomePage();
@@ -22,6 +20,8 @@ namespace JsonFlier.UserControls.TabsControl
 
             Content = welcomePage;
         }
+
+        public FileManager FileManager { get; set; }
 
         public void OpenSimpleText(string title, string text) => Open(title, new PlainText(text));
 
@@ -42,6 +42,8 @@ namespace JsonFlier.UserControls.TabsControl
             tab.Focus();
         }
 
+        public void LoadBookmarks() => welcomePage.LoadBookmarks(FileManager);
+
         private void OnTabClosed(object sender, EventArgs args)
         {
             if (tabControl.Items.Count == 0)
@@ -50,6 +52,6 @@ namespace JsonFlier.UserControls.TabsControl
             }
         }
 
-        private void OpenButton_Click(object sender, RoutedEventArgs e) => OnOpenButtonClick?.Invoke(sender, e);
+        private void OpenButton_Click(object sender, RoutedEventArgs e) => FileManager.ShowOpenFileDialog();
     }
 }

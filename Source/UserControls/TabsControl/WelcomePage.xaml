@@ -5,7 +5,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Button Name="OpenButton" Content="Open file ..." HorizontalAlignment="Left" Margin="302,38,0,0" VerticalAlignment="Top" Width="186" Height="44" Background="#FFF7F7F7" BorderBrush="{x:Null}"/>
-    </Grid>
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="ButtonTemplate">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Height" Value="44"/>
+            <Setter Property="Width" Value="186"/>
+            <Setter Property="Margin" Value="302,38,0,0"/>
+            <Setter Property="Background" Value="#FFF7F7F7"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel x:Name="stackPanel">
+        <Button Style="{StaticResource ButtonTemplate}" Name="OpenButton" Content="Open file ..."/>
+    </StackPanel>
 </UserControl>

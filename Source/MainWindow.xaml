@@ -10,10 +10,19 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File" >
-                    <MenuItem x:Name="menuItemOpen" Header="Open" />
+                    <MenuItem x:Name="menuItemOpen" Header="Open" Click="OpenFile_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="menuItemBookmark" Header="Bookmark">
+                    <MenuItem Header="Add to bookmark ..."/>
+                    <MenuItem Header="Manage bookmarks" Click="BookmarksManagement_Click">
+                        <MenuItem.Icon>
+                            <Image Source="/JsonFlier;component/Resources/settings.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
                 </MenuItem>
             </Menu>
-            <tabsControl:ExtendedTabControl x:Name="TabControl" />
+            <tabsControl:ExtendedTabControl x:Name="tabControl" />
         </DockPanel>
     </Grid>
 </Window>

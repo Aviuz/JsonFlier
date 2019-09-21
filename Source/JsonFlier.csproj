@@ -84,6 +84,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="FileManager.cs" />
+    <Compile Include="Bookmarks\Bookmark.cs" />
+    <Compile Include="Bookmarks\BookmarkManager.cs" />
+    <Compile Include="Bookmarks\LogFileInfo.cs" />
+    <Compile Include="UserControls\Configuration\AddToBookmarkWindow.xaml.cs">
+      <DependentUpon>AddToBookmarkWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Configuration\BookmarksManagmentWindow.xaml.cs">
+      <DependentUpon>BookmarksManagmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Configuration\SingleBookmarkConfiguration.xaml.cs">
+      <DependentUpon>SingleBookmarkConfiguration.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Logs\LogEntry.xaml.cs">
       <DependentUpon>LogEntry.xaml</DependentUpon>
     </Compile>
@@ -115,6 +127,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\Configuration\AddToBookmarkWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Configuration\BookmarksManagmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Configuration\SingleBookmarkConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Logs\LogEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,37 +192,58 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\close.png">
+    <Content Include="Resources\add.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
+    <Content Include="Resources\close.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AppIcon.ico" />
+    <Content Include="Resources\AppIcon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\exception.png">
+    <Content Include="Resources\delete.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
+    <Content Include="Resources\exception.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\text.png">
+    <Content Include="Resources\settings.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
+    <Content Include="Resources\text.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\cube.png">
+    <Content Include="Resources\cube.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\calendar.png">
+    <Content Include="Resources\calendar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\reload.png">
+    <Content Include="Resources\reload.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\down-arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\up-arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
