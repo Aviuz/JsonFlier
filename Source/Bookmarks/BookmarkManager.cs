@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using JsonFlier.UserControls;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -10,21 +11,23 @@ namespace JsonFlier.Bookmarks
     {
         public static IList<Bookmark> Bookmarks { get; private set; }
 
+        public static event EventHandler BookmarksChanged;
+
         static BookmarkManager()
         {
             Bookmarks = new List<Bookmark>();
             LoadSettings();
         }
 
-        public static void OpenBookmark(Bookmark bookmark, FileManager fileManager)
+        public static void OpenBookmark(Bookmark bookmark, FileExplorer fileExplorer)
         {
             foreach (var logFile in bookmark.LogFiles)
             {
-                fileManager.OpenFile(logFile.Path, logFile.Name);
+                fileExplorer.OpenFile(logFile.Path, logFile.Name);
             }
         }
 
-        public static void OpenStartupBookmarks(FileManager fileManager)
+        public static void OpenStartupBookmarks(FileExplorer fileManager)
         {
             foreach (var bookmark in Bookmarks.Where(f => f.OpenOnStartup))
             {
@@ -43,6 +46,8 @@ namespace JsonFlier.Bookmarks
             var jArray = JArray.FromObject(Bookmarks.Select(f => f.Serialize()).ToArray());
             Properties.Settings.Default.Bookmarks = JsonConvert.SerializeObject(jArray);
             Properties.Settings.Default.Save();
+
+            BookmarksChanged?.Invoke(null, EventArgs.Empty);
         }
 
         /// <summary>
@@ -58,7 +63,7 @@ namespace JsonFlier.Bookmarks
 
                     foreach (var bookmarkJson in bookmarksArray)
                     {
-                        Bookmarks.Add(JsonFlier.Bookmarks.Bookmark.FromJson(bookmarkJson.ToString()));
+                        Bookmarks.Add(Bookmark.FromJson(bookmarkJson.ToString()));
                     }
                 }
                 catch (Exception ex)

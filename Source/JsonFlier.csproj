@@ -83,7 +83,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FileManager.cs" />
     <Compile Include="Bookmarks\Bookmark.cs" />
     <Compile Include="Bookmarks\BookmarkManager.cs" />
     <Compile Include="Bookmarks\LogFileInfo.cs" />
@@ -96,6 +95,10 @@
     <Compile Include="UserControls\Configuration\SingleBookmarkConfiguration.xaml.cs">
       <DependentUpon>SingleBookmarkConfiguration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FileExplorer.xaml.cs">
+      <DependentUpon>FileExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Logs\IFileControl.cs" />
     <Compile Include="UserControls\Logs\LogEntry.xaml.cs">
       <DependentUpon>LogEntry.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,7 @@
     <Compile Include="UserControls\Logs\PlainText.xaml.cs">
       <DependentUpon>PlainText.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TabsControl\ExtendendFileTab.cs" />
     <Compile Include="UserControls\TabsControl\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
@@ -136,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Configuration\SingleBookmarkConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\FileExplorer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

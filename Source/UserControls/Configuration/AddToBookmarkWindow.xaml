@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Add to bookmark" Height="150" Width="270" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
-        <RadioButton x:Name="radioButtonNewBookmark" IsChecked="True" Margin="10" Checked="RadioButtonNew_Checked">
+        <RadioButton x:Name="radioButtonNewBookmark" Margin="10" Checked="RadioButtonNew_Checked">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>

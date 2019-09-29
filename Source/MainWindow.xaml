@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:tabsControl="clr-namespace:JsonFlier.UserControls.TabsControl"
+        xmlns:usercontrols="clr-namespace:JsonFlier.UserControls"
         mc:Ignorable="d"
         Title="Json Flier" Height="450" Width="800">
     <Grid>
@@ -13,7 +13,7 @@
                     <MenuItem x:Name="menuItemOpen" Header="Open" Click="OpenFile_Click"/>
                 </MenuItem>
                 <MenuItem x:Name="menuItemBookmark" Header="Bookmark">
-                    <MenuItem Header="Add to bookmark ..."/>
+                    <MenuItem Header="Add to bookmark ..." Click="AddBookmark_Click"/>
                     <MenuItem Header="Manage bookmarks" Click="BookmarksManagement_Click">
                         <MenuItem.Icon>
                             <Image Source="/JsonFlier;component/Resources/settings.png"/>
@@ -22,7 +22,7 @@
                     <Separator/>
                 </MenuItem>
             </Menu>
-            <tabsControl:ExtendedTabControl x:Name="tabControl" />
+            <usercontrols:FileExplorer x:Name="fileExplorer" />
         </DockPanel>
     </Grid>
 </Window>

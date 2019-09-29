@@ -9,17 +9,22 @@ namespace JsonFlier.UserControls.TabsControl
     /// </summary>
     public partial class WelcomePage : UserControl
     {
+        public delegate void OpenBookmarkEvent(object sender, Bookmark bookmark);
+
+        public event OpenBookmarkEvent OnOpenBookmark;
+
         public WelcomePage()
         {
             InitializeComponent();
+            LoadBookmarks();
         }
 
-        public void LoadBookmarks(FileManager fileManager)
+        private void LoadBookmarks()
         {
             foreach (var bookmark in BookmarkManager.Bookmarks)
             {
                 var newButton = new Button() { Content = bookmark.Name, Style = (Style)Resources["ButtonTemplate"] };
-                newButton.Click += new RoutedEventHandler((s, e) => BookmarkManager.OpenBookmark(bookmark, fileManager));
+                newButton.Click += new RoutedEventHandler((s, e) => OnOpenBookmark(this, bookmark));
 
                 stackPanel.Children.Add(newButton);
             }
