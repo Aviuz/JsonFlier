@@ -1,7 +1,11 @@
 ﻿using JsonFlier.UserControls.TabsControl;
+using JsonFlier.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Threading;
 using System.Windows.Controls;
 
 namespace JsonFlier.UserControls.Logs
@@ -9,20 +13,28 @@ namespace JsonFlier.UserControls.Logs
     /// <summary>
     /// Interaction logic for JsonArray.xaml
     /// </summary>
-    public partial class JsonArray : UserControl, IRefreshable
+    public partial class JsonArray : UserControl, IDisposable, IRefreshable
     {
         private string filePath;
-        private JArray logArray;
+        private int numberOfEntries;
+        private Thread loadingThread;
 
-        public JsonArray(JArray logArray, string filePath = null)
+        public JsonArray(IEnumerable<JObject> logArray, string filePath = null)
         {
             InitializeComponent();
 
-            this.filePath = filePath;
+            if (filePath != null)
+            {
+                this.filePath = filePath;
+            }
+            else
+            {
+                dateTimePickerStart.IsEnabled = false;
+                dateTimePickerEnd.IsEnabled = false;
+            }
 
-            this.logArray = logArray;
 
-            LoadLogArray();
+            LoadLogArray(logArray);
         }
 
         public bool CanRefresh => filePath != null;
@@ -46,27 +58,51 @@ namespace JsonFlier.UserControls.Logs
             }
         }
 
-        private void LoadLogArray()
+        public int NumberOfEntries
         {
-            if (MainDockPanel.Children.Count != 0)
+            get => numberOfEntries;
+            set
             {
-                MainDockPanel.Children.Clear();
-            }
-
-            for (int i = 0; i < logArray.Count; i++)
-            {
-                var log = logArray[i] as JObject;
-                if (FilterCriteria(log))
+                if (numberOfEntries != value)
                 {
-                    AppendUserControl(new LogEntry(log));
+                    numberOfEntries = value;
+                    textBlockNumberOfLogs.Text = numberOfEntries.ToString();
                 }
             }
+        }
+
+        public bool IsLoading => loadingThread != null && loadingThread.IsAlive;
+
+        private void LoadLogArray(IEnumerable<JObject> logObjects)
+        {
+            if (MainDockPanel.Items.Count != 0)
+            {
+                MainDockPanel.Items.Clear();
+                NumberOfEntries = 0;
+            }
+
+            loadingThread = new Thread(() =>
+            {
+                foreach (var log in logObjects)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        if (FilterCriteria(log))
+                        {
+                            AppendUserControl(new LogEntry(log));
+                            NumberOfEntries++;
+                        }
+                    });
+                }
+            });
+            loadingThread.Priority = ThreadPriority.BelowNormal;
+            loadingThread.Start();
         }
 
         private void AppendUserControl(UserControl userControl)
         {
             DockPanel.SetDock(userControl, Dock.Top);
-            MainDockPanel.Children.Add(userControl);
+            MainDockPanel.Items.Add(userControl);
         }
 
         public void Refresh()
@@ -76,11 +112,9 @@ namespace JsonFlier.UserControls.Logs
 
             try
             {
-                string fileContent = File.ReadAllText(filePath);
+                var logArray = JArrayParser.Parse(File.OpenRead(filePath), Encoding.UTF8);
 
-                logArray = JArray.Parse(fileContent);
-
-                LoadLogArray();
+                LoadLogArray(logArray);
             }
             catch (Exception e)
             {
@@ -146,12 +180,14 @@ namespace JsonFlier.UserControls.Logs
 
         private void DateTimePickerStart_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<object> e)
         {
-            LoadLogArray();
+            if (CanRefresh)
+                Refresh();
         }
 
         private void DateTimePickerEnd_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<object> e)
         {
-            LoadLogArray();
+            if (CanRefresh)
+                Refresh();
         }
 
         private void ButtonRefresh_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -161,8 +197,16 @@ namespace JsonFlier.UserControls.Logs
 
         private void ButtonToday_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-           dateTimePickerStart.Value = DateTime.Today;
+            dateTimePickerStart.Value = DateTime.Today;
             DateTimeEnd = null;
+        }
+
+        public void Dispose()
+        {
+            if (IsLoading)
+            {
+                loadingThread.Abort();
+            }
         }
     }
 }

@@ -37,11 +37,15 @@
                         <Image Source="pack://siteoforigin:,,,/Resources/close.png" Height="12" />
                     </Button>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Loaded logs: "/>
+                    <TextBlock x:Name="textBlockNumberOfLogs" Text="0"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
         <ScrollViewer>
-            <DockPanel Name="MainDockPanel">
-            </DockPanel>
+            <ListView VirtualizingPanel.IsVirtualizing="True" Name="MainDockPanel">
+            </ListView>
         </ScrollViewer>
     </DockPanel>
 </UserControl>

@@ -11,7 +11,7 @@ namespace JsonFlier
         IEnumerable<IFileTab> OpenedTabs { get; }
 
         void OpenFile(string path, string fileName = null);
-        void OpenJArray(string title, JArray jArray, string fileOrigin = null);
+        void OpenJArray(string title, IEnumerable<JObject> jArray, string fileOrigin = null);
         void OpenSimpleText(string title, string text, string filePath = null);
         void OpenTab(string fileName, string path, UserControl userControl);
         void OpenText(string title, string text, string filePath = null);

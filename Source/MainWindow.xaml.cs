@@ -2,12 +2,14 @@
 using JsonFlier.UserControls.Configuration;
 using JsonFlier.UserControls.Logs;
 using JsonFlier.UserControls.TabsControl;
+using JsonFlier.Utilities;
 using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -68,26 +70,35 @@ namespace JsonFlier
             if (string.IsNullOrWhiteSpace(fileName))
                 fileName = Path.GetFileName(path);
 
-            OpenText(fileName, File.ReadAllText(path), path);
+            IEnumerable<JObject> logsArray;
+            try
+            {
+                logsArray = JArrayParser.Parse(File.OpenRead(path), Encoding.UTF8);
+                OpenJArray(fileName, logsArray, path);
+            }
+            catch
+            {
+                OpenSimpleText(fileName, File.ReadAllText(path), path);
+            }
         }
 
         public void OpenText(string title, string text, string filePath = null)
         {
-            JArray logsArray;
-            try
-            {
-                logsArray = JArray.Parse(text);
-                OpenJArray(title, logsArray, filePath);
-            }
-            catch
-            {
-                OpenSimpleText(title, text, filePath);
-            }
+            //JArray logsArray;
+            //try
+            //{
+            //    logsArray = JArray.Parse(text);
+            //    OpenJArray(title, logsArray, filePath);
+            //}
+            //catch
+            //{
+            //    OpenSimpleText(title, text, filePath);
+            //}
         }
 
         public void OpenSimpleText(string title, string text, string filePath = null) => OpenTab(title, filePath, new PlainText(text, filePath));
 
-        public void OpenJArray(string title, JArray jArray, string filePath = null) => OpenTab(title, filePath, new JsonArray(jArray, filePath));
+        public void OpenJArray(string title, IEnumerable<JObject> jArray, string filePath = null) => OpenTab(title, filePath, new JsonArray(jArray, filePath));
 
         public void OpenTab(string fileName, string path, UserControl userControl)
         {
