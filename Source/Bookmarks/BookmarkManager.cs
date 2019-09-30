@@ -19,7 +19,7 @@ namespace JsonFlier.Bookmarks
             LoadSettings();
         }
 
-        public static void OpenBookmark(Bookmark bookmark, FileExplorer fileExplorer)
+        public static void OpenBookmark(Bookmark bookmark, IFileExplorer fileExplorer)
         {
             foreach (var logFile in bookmark.LogFiles)
             {
@@ -27,7 +27,7 @@ namespace JsonFlier.Bookmarks
             }
         }
 
-        public static void OpenStartupBookmarks(FileExplorer fileManager)
+        public static void OpenStartupBookmarks(IFileExplorer fileManager)
         {
             foreach (var bookmark in Bookmarks.Where(f => f.OpenOnStartup))
             {

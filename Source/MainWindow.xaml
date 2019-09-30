@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:usercontrols="clr-namespace:JsonFlier.UserControls"
+        xmlns:tabscontrol="clr-namespace:JsonFlier.UserControls.TabsControl"
         mc:Ignorable="d"
         Title="Json Flier" Height="450" Width="800">
     <Grid>
@@ -11,6 +12,10 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File" >
                     <MenuItem x:Name="menuItemOpen" Header="Open" Click="OpenFile_Click"/>
+                    <Separator/>
+                    <MenuItem x:Name="menuItemRefresh" Header="Refresh" Click="MenuItemRefresh_Click" IsEnabled="False"/>
+                    <Separator/>
+                    <MenuItem x:Name="menuItemClose" Header="Close" Click="MenuItemClose_Click" IsEnabled="False"/>
                 </MenuItem>
                 <MenuItem x:Name="menuItemBookmark" Header="Bookmark">
                     <MenuItem Header="Add to bookmark ..." Click="AddBookmark_Click"/>
@@ -22,7 +27,7 @@
                     <Separator/>
                 </MenuItem>
             </Menu>
-            <usercontrols:FileExplorer x:Name="fileExplorer" />
+            <tabscontrol:ExtendedTabControl x:Name="extendedTabControl" />
         </DockPanel>
     </Grid>
 </Window>

@@ -11,13 +11,13 @@
             <ColumnDefinition Width="745*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <ScrollViewer Name="LeftScroller" VerticalScrollBarVisibility="Hidden">
+            <ScrollViewer Name="LeftScroller" VerticalScrollBarVisibility="Hidden" IsEnabled="False">
                 <TextBlock x:Name="LnBlock" TextWrapping="NoWrap" Margin="1 5 1 5"  TextAlignment="Right"/>
             </ScrollViewer>
         </Grid>
         <Grid Grid.Column="1" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
             <ScrollViewer x:Name="RightScroller" HorizontalScrollBarVisibility="Auto" ScrollChanged="ScrollViewer_ScrollChanged">
-                <TextBox x:Name="TextBlock" IsReadOnly="True" TextWrapping="NoWrap" Margin="5 5 5 5" Text="TextBlock" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0"  />
+                <TextBox x:Name="textBlock" IsReadOnly="True" TextWrapping="NoWrap" Margin="5 5 5 5" Text="TextBlock" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0"  />
             </ScrollViewer>
         </Grid>
     </Grid>

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using JsonFlier.UserControls.TabsControl;
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Windows.Controls;
@@ -8,7 +9,7 @@ namespace JsonFlier.UserControls.Logs
     /// <summary>
     /// Interaction logic for JsonArray.xaml
     /// </summary>
-    public partial class JsonArray : UserControl
+    public partial class JsonArray : UserControl, IRefreshable
     {
         private string filePath;
         private JArray logArray;

@@ -95,10 +95,9 @@
     <Compile Include="UserControls\Configuration\SingleBookmarkConfiguration.xaml.cs">
       <DependentUpon>SingleBookmarkConfiguration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\FileExplorer.xaml.cs">
-      <DependentUpon>FileExplorer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Logs\IFileControl.cs" />
+    <Compile Include="IFileExplorer.cs" />
+    <Compile Include="UserControls\TabsControl\IFileTab.cs" />
+    <Compile Include="UserControls\TabsControl\IRefreshable.cs" />
     <Compile Include="UserControls\Logs\LogEntry.xaml.cs">
       <DependentUpon>LogEntry.xaml</DependentUpon>
     </Compile>
@@ -140,10 +139,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Configuration\SingleBookmarkConfiguration.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\FileExplorer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

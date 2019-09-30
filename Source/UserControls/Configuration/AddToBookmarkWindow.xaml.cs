@@ -25,7 +25,7 @@ namespace JsonFlier.UserControls.Configuration
     /// </summary>
     public partial class AddToBookmarkWindow : Window
     {
-        public AddToBookmarkWindow(string fileName, string filePath, FileExplorer fileManager)
+        public AddToBookmarkWindow(string fileName, string filePath, IFileExplorer fileManager)
         {
             InitializeComponent();
 
@@ -38,7 +38,7 @@ namespace JsonFlier.UserControls.Configuration
             LoadBookmarks();
         }
 
-        public FileExplorer FileManager { get; private set; }
+        public IFileExplorer FileManager { get; private set; }
 
         public string FileName { get; private set; }
 

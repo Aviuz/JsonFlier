@@ -38,6 +38,16 @@ namespace JsonFlier.UserControls.TabsControl
             closableTabHeader.label_TabTitle.SizeChanged += new SizeChangedEventHandler(label_TabTitle_SizeChanged);
         }
 
+        // Close method
+        public void Close()
+        {
+            ((TabControl)this.Parent).Items.Remove(this);
+            if (OnClosed != null)
+            {
+                OnClosed.Invoke(this, new EventArgs());
+            }
+        }
+
         // Override OnSelected - Show the Close Button
         protected override void OnSelected(RoutedEventArgs e)
         {
@@ -88,11 +98,7 @@ namespace JsonFlier.UserControls.TabsControl
         // Button Close Click - Remove the Tab - (or raise an event indicating a "CloseTab" event has occurred)
         void button_close_Click(object sender, RoutedEventArgs e)
         {
-            ((TabControl)this.Parent).Items.Remove(this);
-            if(OnClosed != null)
-            {
-                OnClosed.Invoke(this, new EventArgs());
-            }
+            Close();
         }
 
         // Label SizeChanged - When the Size of the Label changes (due to setting the Title) set position of button properly
