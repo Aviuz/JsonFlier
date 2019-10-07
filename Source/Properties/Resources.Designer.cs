@@ -133,6 +133,16 @@ namespace JsonFlier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap down_long_arrow {
+            get {
+                object obj = ResourceManager.GetObject("down_long_arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap exception {
             get {
                 object obj = ResourceManager.GetObject("exception", resourceCulture);
@@ -176,6 +186,16 @@ namespace JsonFlier.Properties {
         internal static System.Drawing.Bitmap up_arrow {
             get {
                 object obj = ResourceManager.GetObject("up_arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap up_long_arrow {
+            get {
+                object obj = ResourceManager.GetObject("up_long_arrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

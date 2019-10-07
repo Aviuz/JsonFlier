@@ -71,12 +71,11 @@ namespace JsonFlier
                 fileName = Path.GetFileName(path);
 
             IEnumerable<JObject> logsArray;
-            try
+            if (JArrayParser.TryParse(File.OpenRead(path), Encoding.UTF8, out logsArray))
             {
-                logsArray = JArrayParser.Parse(File.OpenRead(path), Encoding.UTF8);
                 OpenJArray(fileName, logsArray, path);
             }
-            catch
+            else
             {
                 OpenSimpleText(fileName, File.ReadAllText(path), path);
             }

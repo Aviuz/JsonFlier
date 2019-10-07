@@ -3,10 +3,13 @@ using JsonFlier.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Threading;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace JsonFlier.UserControls.Logs
 {
@@ -75,24 +78,40 @@ namespace JsonFlier.UserControls.Logs
 
         private void LoadLogArray(IEnumerable<JObject> logObjects)
         {
-            if (MainDockPanel.Items.Count != 0)
-            {
-                MainDockPanel.Items.Clear();
-                NumberOfEntries = 0;
-            }
+            listView.Items.Clear();
+            NumberOfEntries = 0;
 
             loadingThread = new Thread(() =>
             {
                 foreach (var log in logObjects)
                 {
-                    Dispatcher.Invoke(() =>
+                    try
                     {
-                        if (FilterCriteria(log))
+                        Dispatcher.Invoke(() =>
                         {
-                            AppendUserControl(new LogEntry(log));
-                            NumberOfEntries++;
-                        }
-                    });
+                            if (FilterCriteria(log))
+                            {
+                                var entry = new LogEntryModel()
+                                {
+                                    Title = log["title"]?.ToString(),
+                                    Category = log["category"]?.ToString(),
+                                    DataType = log["data"] != null ? log["dataType"]?.ToString() : null,
+                                    FontWeight = log["data"] != null && log["dataType"] != null ? FontWeights.Bold : FontWeights.Normal,
+                                    FontStyle = log["category"]?.ToString() == "Trace" ? FontStyles.Italic : FontStyles.Normal,
+                                    Date = log["date"]?.ToString(),
+                                    Time = log["time"]?.ToString(),
+                                    Json = log
+                                };
+                                listView.Items.Add(entry);
+
+                                NumberOfEntries++;
+                            }
+                        });
+                    }
+                    catch (Exception)
+                    {
+                        break;
+                    }
                 }
             });
             loadingThread.Priority = ThreadPriority.BelowNormal;
@@ -102,7 +121,7 @@ namespace JsonFlier.UserControls.Logs
         private void AppendUserControl(UserControl userControl)
         {
             DockPanel.SetDock(userControl, Dock.Top);
-            MainDockPanel.Items.Add(userControl);
+            listView.Items.Add(userControl);
         }
 
         public void Refresh()
@@ -206,6 +225,113 @@ namespace JsonFlier.UserControls.Logs
             if (IsLoading)
             {
                 loadingThread.Abort();
+            }
+        }
+
+
+        private void LoadJsonObject(JObject logEntry)
+        {
+            treeView.Background = logEntry["data"] == null ? new SolidColorBrush(Color.FromRgb(0xdd, 0xdd, 0xdd)) : new SolidColorBrush(Color.FromArgb(0x0, 0x0, 0x0, 0x0));
+            treeView.Visibility = Visibility.Visible;
+            treeView.Items.Clear();
+            textBoxLongText.Text = null;
+            textBoxLongText.Visibility = Visibility.Collapsed;
+
+            if (logEntry["data"] is null)
+            {
+
+            }
+            else if (logEntry["data"] is JValue)
+            {
+                //var textBox = new TextBox()
+                //{
+                //    Text = logEntry["data"].ToString(),
+                //    TextWrapping = TextWrapping.Wrap,
+                //    Background = null,
+                //    BorderThickness = new Thickness(0),
+                //    IsReadOnly = true,
+                //};
+
+                //treeView.Items.Add(textBox);
+                treeView.Visibility = Visibility.Collapsed;
+                textBoxLongText.Visibility = Visibility.Visible;
+                textBoxLongText.Text = logEntry["data"].ToString();
+            }
+            else if (logEntry["data"] is JObject)
+            {
+                foreach (var property in ((JObject)logEntry["data"]).Properties())
+                {
+                    var treeViewItem = new TreeViewItem() { Header = property.Name };
+                    AddRecursive(treeViewItem, property.Value);
+                    treeView.Items.Add(treeViewItem);
+                }
+            }
+        }
+
+        private void AddRecursive(TreeViewItem parent, JToken item)
+        {
+            if (item == null)
+            {
+                return;
+            }
+
+            if (item is JValue)
+            {
+                if (((JValue)item).Value == null)
+                {
+                    var treeViewItem = new TreeViewItem() { Header = "<< null >>", FontStyle = FontStyles.Italic };
+                    parent.Items.Add(treeViewItem);
+                }
+                else
+                {
+                    var treeViewItem = new TreeViewItem() { Header = item.ToString() };
+                    parent.Items.Add(treeViewItem);
+                }
+            }
+            else if (item is JArray)
+            {
+                var array = (JArray)item;
+                for (int i = 0; i < array.Count; i++)
+                {
+                    var treeViewItem = new TreeViewItem() { Header = $"[{i}]" };
+                    AddRecursive(treeViewItem, array[i]);
+                    parent.Items.Add(treeViewItem);
+                }
+            }
+            else if (item is JObject)
+            {
+                foreach (var property in ((JObject)item).Properties())
+                {
+                    var treeViewItem = new TreeViewItem() { Header = property.Name };
+                    AddRecursive(treeViewItem, property.Value);
+                    parent.Items.Add(treeViewItem);
+                }
+            }
+        }
+
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var item = sender as ListViewItem;
+            var logData = item?.Content as LogEntryModel;
+            if (logData != null)
+            {
+                LoadJsonObject(logData.Json);
+            }
+        }
+
+        private void ButtonScrollTop_Click(object sender, RoutedEventArgs e)
+        {
+            if (listView.Items.Count > 0)
+            {
+                listView.ScrollIntoView(listView.Items[0]);
+            }
+        }
+
+        private void ButtonScrollBottom_Click(object sender, RoutedEventArgs e)
+        {
+            if (listView.Items.Count > 0)
+            {
+                listView.ScrollIntoView(listView.Items[listView.Items.Count - 1]);
             }
         }
     }

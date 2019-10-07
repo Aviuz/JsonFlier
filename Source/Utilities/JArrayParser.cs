@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace JsonFlier.Utilities
@@ -77,6 +78,20 @@ namespace JsonFlier.Utilities
                         throw new FormatException($"Invalid JSON format, unexpected token {charIterator}");
                     }
                 }
+            }
+        }
+
+        public static bool TryParse(Stream stream, Encoding encoding, out IEnumerable<JObject> objects)
+        {
+            try
+            {
+                objects = Parse(stream, encoding).ToList();
+                return true;
+            }
+            catch (FormatException)
+            {
+                objects = null;
+                return false;
             }
         }
     }
