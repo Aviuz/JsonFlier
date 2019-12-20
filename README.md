@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/Aviuz/JsonFlier/master/Design/Logo.svg" alt="JsonFlier" />
+    <img src="https://raw.githubusercontent.com/Aviuz/JsonFlier/master/Design/Logo.png" alt="JsonFlier" />
 </p>
 
 # JsonFlier
