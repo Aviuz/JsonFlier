@@ -1,4 +1,4 @@
-﻿using JsonFlier.UserControls.TabsControl;
+using JsonFlier.UserControls.TabsControl;
 using JsonFlier.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
@@ -91,17 +91,7 @@ namespace JsonFlier.UserControls.Logs
                         {
                             if (FilterCriteria(log))
                             {
-                                var entry = new LogEntryModel()
-                                {
-                                    Title = log["title"]?.ToString(),
-                                    Category = log["category"]?.ToString(),
-                                    DataType = log["data"] != null ? log["dataType"]?.ToString() : null,
-                                    FontWeight = log["data"] != null && log["dataType"] != null ? FontWeights.Bold : FontWeights.Normal,
-                                    FontStyle = log["category"]?.ToString() == "Trace" ? FontStyles.Italic : FontStyles.Normal,
-                                    Date = log["date"]?.ToString(),
-                                    Time = log["time"]?.ToString(),
-                                    Json = log
-                                };
+                                var entry = LogEntryModel.FromJObject(log);
                                 listView.Items.Add(entry);
 
                                 NumberOfEntries++;

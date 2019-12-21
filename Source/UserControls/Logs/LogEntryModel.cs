@@ -30,5 +30,20 @@ namespace JsonFlier.UserControls.Logs
         public JToken Data => Json != null ? Json["data"] : null;
 
         public Control DetailView { get; set; }
+
+        public static LogEntryModel FromJObject(JObject log)
+        {
+            return new LogEntryModel()
+            {
+                Title = log["title"]?.ToString(),
+                Category = log["category"]?.ToString(),
+                DataType = log["data"] != null ? log["dataType"]?.ToString() : null,
+                FontWeight = log["data"] != null && log["dataType"] != null ? FontWeights.Bold : FontWeights.Normal,
+                FontStyle = log["category"]?.ToString() == "Trace" ? FontStyles.Italic : FontStyles.Normal,
+                Date = log["date"]?.ToString(),
+                Time = log["time"]?.ToString(),
+                Json = log
+            };
+        }
     }
 }
