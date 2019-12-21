@@ -260,11 +260,13 @@ namespace JsonFlier
         {
             if (this.WindowState == WindowState.Maximized)
             {
+                ResizeMode = ResizeMode.CanResizeWithGrip;
                 this.WindowState = WindowState.Normal;
-                MaxButton.Content = new Image() {Source= new BitmapImage(new Uri("/JsonFlier;component/Resources/maximize_16.png", UriKind.Relative)) };
+                MaxButton.Content = new Image() { Source = new BitmapImage(new Uri("/JsonFlier;component/Resources/maximize_16.png", UriKind.Relative)) };
             }
             else
             {
+                ResizeMode = ResizeMode.NoResize;
                 this.WindowState = WindowState.Maximized;
                 MaxButton.Content = new Image() {Source= new BitmapImage(new Uri("/JsonFlier;component/Resources/collapse_16.png", UriKind.Relative)) };
             }
