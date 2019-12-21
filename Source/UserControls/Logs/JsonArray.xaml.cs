@@ -3,7 +3,6 @@ using JsonFlier.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -41,7 +40,6 @@ namespace JsonFlier.UserControls.Logs
         }
 
         public bool CanRefresh => filePath != null;
-
 
         public DateTime? DateTimeStart
         {
@@ -218,20 +216,25 @@ namespace JsonFlier.UserControls.Logs
             }
         }
 
-
         private void LoadJsonObject(JObject logEntry)
         {
-            treeView.Background = logEntry["data"] == null ? new SolidColorBrush(Color.FromRgb(0xdd, 0xdd, 0xdd)) : new SolidColorBrush(Color.FromArgb(0x0, 0x0, 0x0, 0x0));
-            treeView.Visibility = Visibility.Visible;
-            treeView.Items.Clear();
-            textBoxLongText.Text = null;
-            textBoxLongText.Visibility = Visibility.Collapsed;
-
             if (logEntry["data"] is null)
             {
+                treeViewTitle.Visibility = Visibility.Collapsed;
+                treeView.Visibility = Visibility.Collapsed;
+                textBoxLongText.Visibility = Visibility.Collapsed;
+                DetailsGrid.Background = new SolidColorBrush(Color.FromRgb(0xdd, 0xdd, 0xdd));
 
+                return;
             }
-            else if (logEntry["data"] is JValue)
+
+            DetailsGrid.Background = new SolidColorBrush(Color.FromArgb(0x0, 0x0, 0x0, 0x0));
+            treeView.Items.Clear();
+
+            treeViewTitle.Text = logEntry?["title"].ToString();
+            treeViewTitle.Visibility = Visibility.Visible;
+
+            if (logEntry["data"] is JValue)
             {
                 //var textBox = new TextBox()
                 //{
@@ -249,10 +252,26 @@ namespace JsonFlier.UserControls.Logs
             }
             else if (logEntry["data"] is JObject)
             {
+                treeView.Visibility = Visibility.Visible;
+                textBoxLongText.Visibility = Visibility.Collapsed;
+
                 foreach (var property in ((JObject)logEntry["data"]).Properties())
                 {
                     var treeViewItem = new TreeViewItem() { Header = property.Name };
                     AddRecursive(treeViewItem, property.Value);
+                    treeView.Items.Add(treeViewItem);
+                }
+            }
+            else if (logEntry["data"] is JArray)
+            {
+                treeView.Visibility = Visibility.Visible;
+                textBoxLongText.Visibility = Visibility.Collapsed;
+
+                var array = (JArray)logEntry["data"];
+                for (int i = 0; i < array.Count; i++)
+                {
+                    var treeViewItem = new TreeViewItem() { Header = $"[{i}]" };
+                    AddRecursive(treeViewItem, array[i]);
                     treeView.Items.Add(treeViewItem);
                 }
             }

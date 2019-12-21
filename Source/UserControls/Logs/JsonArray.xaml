@@ -134,8 +134,15 @@
                 </ListView.ItemContainerStyle>
             </ListView>
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
-            <TreeView Grid.Column="2" Name="treeView" Background="{x:Null}" BorderBrush="{x:Null}" />
-            <TextBox Name="textBoxLongText" Grid.Column="2" TextWrapping="Wrap" Background="{x:Null}" BorderThickness="0" IsReadOnly="True" Visibility="Collapsed"/>
+            <Grid x:Name="DetailsGrid" Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24px"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Name="treeViewTitle" FontWeight="Bold" FontSize="18" Margin="5,0,0,0"/>
+                <TreeView Grid.Row="1" Name="treeView" Background="{x:Null}" BorderBrush="{x:Null}" />
+                <TextBox Grid.Row="1" Name="textBoxLongText" TextWrapping="Wrap" Background="{x:Null}" BorderThickness="0" IsReadOnly="True" Visibility="Collapsed"/>
+            </Grid>
         </Grid>
     </DockPanel>
 </UserControl>
