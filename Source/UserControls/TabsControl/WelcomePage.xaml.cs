@@ -1,4 +1,4 @@
-﻿using JsonFlier.Bookmarks;
+using JsonFlier.Bookmarks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -23,7 +23,7 @@ namespace JsonFlier.UserControls.TabsControl
         {
             foreach (var bookmark in BookmarkManager.Bookmarks)
             {
-                var newButton = new Button() { Content = bookmark.Name, Style = (Style)Resources["ButtonTemplate"] };
+                var newButton = new Button() { Content = bookmark.Name };
                 newButton.Click += new RoutedEventHandler((s, e) => OnOpenBookmark(this, bookmark));
 
                 stackPanel.Children.Add(newButton);
