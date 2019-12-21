@@ -16,9 +16,9 @@
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    sodipodi:docname="Collapse.svg"
-   inkscape:export-filename="D:\Git Repository\JsonFlier\Design\Collapse.png"
-   inkscape:export-xdpi="15.240201"
-   inkscape:export-ydpi="15.240201">
+   inkscape:export-filename="D:\Git Repository\JsonFlier\Design\collapse_16.png"
+   inkscape:export-xdpi="20.32"
+   inkscape:export-ydpi="20.32">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.6"
-     inkscape:cx="-22.344808"
-     inkscape:cy="45.743531"
+     inkscape:cx="-69.528401"
+     inkscape:cy="66.64355"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -57,18 +57,17 @@
      id="layer1"
      transform="translate(0,-277)">
     <rect
-       y="279.17691"
-       x="5.0871272"
-       height="12.383298"
-       width="12.501126"
-       id="rect821"
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.84765738;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.84765738;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.84765738;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect819"
        width="12.501126"
        height="12.383298"
        x="2.5480666"
        y="282.11688" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.8;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 5.126302,282.11719 -0.039175,-2.94028 h 12.501126 v 12.3833 l -2.540076,-0.005"
+       id="path820"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
   </g>
 </svg>
