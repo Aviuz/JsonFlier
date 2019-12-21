@@ -12,6 +12,9 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace JsonFlier
 {
@@ -238,10 +241,63 @@ namespace JsonFlier
             RefreshAvailabilityOfControls();
         }
 
+        private void Grid_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                if (e.ClickCount == 2)
+                {
+                    AdjustWindowSize();
+                }
+                else
+                {
+                    Application.Current.MainWindow.DragMove();
+                }
+            }
+        }
+
+        private void AdjustWindowSize()
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+                MaxButton.Content = new Image() {Source= new BitmapImage(new Uri("/JsonFlier;component/Resources/maximize_16.png", UriKind.Relative)) };
+            }
+            else
+            {
+                this.WindowState = WindowState.Maximized;
+                MaxButton.Content = new Image() {Source= new BitmapImage(new Uri("/JsonFlier;component/Resources/collapse_16.png", UriKind.Relative)) };
+            }
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void MaxButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdjustWindowSize();
+        }
+
+        private void MinButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
         // Dispose
         public void Dispose()
         {
             BookmarkManager.BookmarksChanged -= OnBookmarksChanged;
+        }
+
+        private void Grid_MouseEnter(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void Grid_MouseLeave(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

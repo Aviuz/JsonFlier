@@ -6,9 +6,43 @@
         xmlns:usercontrols="clr-namespace:JsonFlier.UserControls"
         xmlns:tabscontrol="clr-namespace:JsonFlier.UserControls.TabsControl"
         mc:Ignorable="d"
-        Title="Json Flier" Height="450" Width="800">
+        Title="Json Flier" Height="450" Width="800" WindowStyle="None">
+    <Window.Resources>
+        <ControlTemplate x:Key="roundbutton" TargetType="Button">
+            <Grid >
+                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </ControlTemplate>
+        <Style TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource roundbutton}"/>
+        </Style>
+    </Window.Resources>
     <Grid>
-        <DockPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="26*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.ColumnSpan="2">
+            <Grid DockPanel.Dock="Top" Height="18px" MouseDown="Grid_MouseDown" Background="#00000000">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="18"/>
+                    <ColumnDefinition Width="18"/>
+                    <ColumnDefinition Width="18"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" FontFamily="Magneto" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" FontStyle="Italic">
+                    JsonFlier
+                </TextBlock>
+                <Button Grid.Column="1" x:Name="MinButton" Click="MinButton_Click" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" Height="16">
+                    <Image Source="/JsonFlier;component/Resources/minimize_16.png"/>
+                </Button>
+                <Button Grid.Column="2" x:Name="MaxButton" Click="MaxButton_Click" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" Height="16">
+                    <Image Source="/JsonFlier;component/Resources/maximize_16.png" />
+                </Button>
+                <Button Grid.Column="3" x:Name="CloseButton" Click="CloseButton_Click" BorderBrush="{x:Null}" FontSize="6" HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" Height="16">
+                    <Image Source="/JsonFlier;component/Resources/close_16.png"/>
+                </Button>
+            </Grid>
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File" >
                     <MenuItem x:Name="menuItemOpen" Header="Open" Click="OpenFile_Click"/>
