@@ -2,21 +2,47 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="81" Margin="0" Height="23">
-    <TabItem.Template>
-        <ControlTemplate TargetType="TabItem">
-            <Grid Name="Panel">
-                <ContentPresenter x:Name="ContentSite"
-                                        ContentSource="Header"
-                                        Margin="0"/>
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+         xmlns:mock="clr-namespace:JsonFlier.Mock"
+         mc:Ignorable="d" d:DesignWidth="81" Margin="0" Height="20px">
+    <TabItem.Resources>
+        <mock:MockText x:Key="MockText" />
+        <ControlTemplate x:Key="tabButton" TargetType="Button">
+            <Grid x:Name="background">
+                <ContentPresenter />
             </Grid>
             <ControlTemplate.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter TargetName="Panel" Property="Background" Value="#FFADDFFD" />
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="background" Property="Background" Value="#90ff0000"/>
                 </Trigger>
-                <Trigger Property="IsSelected" Value="False">
-                    <Setter TargetName="Panel" Property="Background" Value="#FFECF8FF" />
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </TabItem.Resources>
+    <TabItem.Template>
+        <ControlTemplate TargetType="TabItem">
+            <Grid Name="Panel" Background="White">
+                <Grid Height="18px" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="4"/>
+                        <ColumnDefinition Width="16"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="3" Name="button_close" ToolTip="Close" Template="{StaticResource tabButton}" Click="ButtonClose_Click" Visibility="Hidden">
+                        <Image Source="pack://siteoforigin:,,,/Resources/close.png" Width="12" Height="12" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </Button>
+                    <!--Text="{Binding Title}"-->
+                    <TextBlock Grid.Column="1" Name="label_TabTitle" Text="{Binding Title}" d:DataContext="{Binding Source={StaticResource MockText}}" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Courier" FontSize="13" Padding="2" SizeChanged="TabTitle_SizeChanged"/>
+                </Grid>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger SourceName="Panel" Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Panel" Property="Background" Value="#FFCAEBFF" />
+                    <Setter TargetName="button_close" Property="Visibility" Value="Visible"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter TargetName="Panel" Property="Background" Value="DarkBlue" />
+                    <Setter TargetName="label_TabTitle" Property="Foreground" Value="White" />
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>

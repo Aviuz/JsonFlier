@@ -1,3 +1,4 @@
+using JsonFlier.Command;
 using JsonFlier.UserControls.TabsControl;
 using JsonFlier.Utilities;
 using Newtonsoft.Json.Linq;
@@ -25,37 +26,40 @@ namespace JsonFlier.UserControls.Logs
         {
             InitializeComponent();
 
+            DateTimeStartListener = new DateTimeListener(null);
+            DateTimeEndListener = new DateTimeListener(null);
+            DateTimeStartListener.OnValueChanged += OnDateTimeChanged;
+            DateTimeEndListener.OnValueChanged += OnDateTimeChanged;
+
             if (filePath != null)
             {
                 this.filePath = filePath;
             }
-            else
-            {
-                dateTimePickerStart.IsEnabled = false;
-                dateTimePickerEnd.IsEnabled = false;
-            }
-
 
             LoadLogArray(logArray);
         }
 
         public bool CanRefresh => filePath != null;
 
+        public DateTimeListener DateTimeStartListener { get; set; } = new DateTimeListener(null);
+
+        public DateTimeListener DateTimeEndListener { get; set; } = new DateTimeListener(null);
+
         public DateTime? DateTimeStart
         {
-            get { return dateTimePickerStart.Value; }
+            get { return DateTimeStartListener.DateTime; }
             set
             {
-                dateTimePickerStart.Value = value;
+                DateTimeStartListener.DateTime = value;
             }
         }
 
         public DateTime? DateTimeEnd
         {
-            get { return dateTimePickerEnd.Value; }
+            get { return DateTimeEndListener.DateTime; }
             set
             {
-                dateTimePickerEnd.Value = value;
+                DateTimeEndListener.DateTime = value;
             }
         }
 
@@ -129,6 +133,12 @@ namespace JsonFlier.UserControls.Logs
             }
         }
 
+        public void PanToToday()
+        {
+            DateTimeStart = DateTime.Today;
+            DateTimeEnd = null;
+        }
+
         private bool FilterCriteria(JObject logObject)
         {
             if (logObject == null)
@@ -175,37 +185,12 @@ namespace JsonFlier.UserControls.Logs
             return true;
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            dateTimePickerStart.Value = null;
-        }
-
-        private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
-        {
-            dateTimePickerEnd.Value = null;
-        }
-
-        private void DateTimePickerStart_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<object> e)
+        private void OnDateTimeChanged(DateTime? oldValue, DateTime? newValue)
         {
             if (CanRefresh)
+            {
                 Refresh();
-        }
-
-        private void DateTimePickerEnd_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<object> e)
-        {
-            if (CanRefresh)
-                Refresh();
-        }
-
-        private void ButtonRefresh_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Refresh();
-        }
-
-        private void ButtonToday_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            dateTimePickerStart.Value = DateTime.Today;
-            DateTimeEnd = null;
+            }
         }
 
         public void Dispose()

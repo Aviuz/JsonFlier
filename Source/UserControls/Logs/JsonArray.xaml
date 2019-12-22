@@ -7,6 +7,7 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:converters="clr-namespace:JsonFlier.UserControls.Logs.Converters"
              xmlns:mock="clr-namespace:JsonFlier.Mock"
+             xmlns:actions="clr-namespace:JsonFlier.UserControls.Toolbar.Actions"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Margin="0" >
     <UserControl.Resources>
@@ -15,12 +16,12 @@
         <converters:LogDataTypeToImageSrcConverter x:Key="LogDataTypeToImageSrcConverter"/>
         <mock:LogEntriesMockUp x:Key="DesignViewModel"/>
         <ControlTemplate x:Key="scrollButton" TargetType="Button">
-            <Grid x:Name="backgroundGrid" Background="Transparent">
+            <Border x:Name="background" Background="Transparent" BorderBrush="DarkGray" CornerRadius="3" BorderThickness="1" Width="65">
                 <ContentPresenter />
-            </Grid>
+            </Border>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="backgroundGrid" Property="Background" Value="#FFEAEAEA"/>
+                    <Setter TargetName="background" Property="Background" Value="#FFEAEAEA"/>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -35,147 +36,105 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </UserControl.Resources>
-    <DockPanel Background="White">
-        <Grid DockPanel.Dock="Top" Background="#FFE8E8E8">
-            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <Grid Width="4"/>
-                    <Button x:Name="buttonScrollTop" Click="ButtonScrollTop_Click" Template="{StaticResource toolBarButton}">
-                        <Image Source="pack://siteoforigin:,,,/Resources/up-long-arrow.png" Height="16" />
-                    </Button>
-                    <Grid Width="4"/>
-                    <Button x:Name="buttonScrollBottom" Click="ButtonScrollBottom_Click" Template="{StaticResource toolBarButton}">
-                        <Image Source="pack://siteoforigin:,,,/Resources/down-long-arrow.png" Height="16" />
-                    </Button>
-                    <Grid Width="4"/>
-                    <Grid Width="1" Background="#FF7E7E7E"/>
-                    <Grid Width="4"/>
-                    <Button x:Name="buttonRefresh" Click="ButtonRefresh_Click" Template="{StaticResource toolBarButton}">
-                        <Image Source="pack://siteoforigin:,,,/Resources/reload.png" Height="16" />
-                    </Button>
-                    <Grid Width="4"/>
-                    <Button x:Name="buttonToday" Click="ButtonToday_Click" Template="{StaticResource toolBarButton}">
-                        <Image Source="pack://siteoforigin:,,,/Resources/calendar.png" Height="16" />
-                    </Button>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5,2" VerticalAlignment="Center">
-                    <TextBlock Text="From:"/>
-                    <Grid Width="10"/>
-                    <xctk:DateTimePicker x:Name="dateTimePickerStart" Format="Custom" FormatString="dd.MM.yy HH:mm" MinWidth="120" ValueChanged="DateTimePickerStart_ValueChanged"/>
-                    <Button Click="Button_Click">
-                        <Image Source="pack://siteoforigin:,,,/Resources/close.png" Height="12" />
-                    </Button>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="5,2">
-                    <TextBlock Text="To:"/>
-                    <Grid Width="10"/>
-                    <xctk:DateTimePicker x:Name="dateTimePickerEnd" Format="Custom" FormatString="dd.MM.yy HH:mm" MinWidth="120" ValueChanged="DateTimePickerEnd_ValueChanged"/>
-                    <Button Click="Button_Click_1">
-                        <Image Source="pack://siteoforigin:,,,/Resources/close.png" Height="12" />
-                    </Button>
-                </StackPanel>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="480"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="16"/>
+            </Grid.RowDefinitions>
+            <Button Template="{StaticResource scrollButton}" Grid.Row="0" Click="ButtonScrollTop_Click">
+                <Image Source="pack://siteoforigin:,,,/Resources/up-arrow.png" Height="16" VerticalAlignment="Center"/>
+            </Button>
+            <Button Template="{StaticResource scrollButton}" Grid.Row="2" Click="ButtonScrollBottom_Click">
+                <Image Source="pack://siteoforigin:,,,/Resources/down-arrow.png" Height="16" VerticalAlignment="Center"/>
+            </Button>
+            <ListView Grid.Row="1" VirtualizingPanel.IsVirtualizing="True" Name="listView" d:DataContext ="{Binding Source={StaticResource DesignViewModel}}" ItemsSource="{Binding Entries}" BorderBrush="{x:Null}">
+                <ListView.View>
+                    <GridView x:Name="gridView2">
+                        <GridViewColumn Width="24">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Width="12" Height="12" Source="{Binding Path=DataType, Converter={StaticResource LogDataTypeToImageSrcConverter}}"/>
+                                    <!-- this is for Product.id, you'll have to change it-->
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="65">
+                            <GridViewColumnHeader>
+                                <TextBlock Text="Date"/>
+                            </GridViewColumnHeader>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <!--<TextBlock Text="{Binding Path=Date}"/>-->
+                                    <TextBlock Text="{Binding Path=Date}" Background="{x:Null}" Foreground="#FF343434" FontSize="12" FontFamily="Segoe UI Light"/>
+                                    <!-- this is for Product.id, you'll have to change it-->
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="60">
+                            <GridViewColumnHeader>
+                                <TextBlock Text="Time"/>
+                            </GridViewColumnHeader>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <!--<TextBlock Text="{Binding Path=Time}"/>-->
+                                    <TextBlock Text="{Binding Path=Time}" Background="{x:Null}" Foreground="Black" FontFamily="Segoe UI Semibold"/>
+                                    <!-- this is for Product.id, you'll have to change it-->
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="300">
+                            <GridViewColumnHeader>
+                                <TextBlock Text="Title"/>
+                            </GridViewColumnHeader>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <!--<TextBlock Text="{Binding Path=Title}"/>-->
+                                    <TextBlock Text="{Binding Path=Title}" Background="{x:Null}" Foreground="Black" FontWeight="{Binding FontWeight}" FontStyle="{Binding FontStyle}"/>
+                                    <!-- this is for Product.id, you'll have to change it-->
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
+                        <Setter Property="Background" Value="{Binding Path=Category, Converter={StaticResource LogTypeToColorConverter}}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{Binding Path=Category, Converter={StaticResource LogTypeToColorHighlightedConverter}}"/>
+                                <Setter Property="BorderBrush" Value="#50000000"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="{Binding Path=Category, Converter={StaticResource LogTypeToColorHighlightedConverter}}"/>
+                                <Setter Property="BorderBrush" Value="#80000000"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+            <StackPanel Background="#f0f0f0" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Loaded logs: " FontStyle="Italic"/>
+                <TextBlock x:Name="textBlockNumberOfLogs" Text="0"/>
             </StackPanel>
         </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="480"/>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="18"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="18"/>
-                    <RowDefinition Height="16"/>
-                </Grid.RowDefinitions>
-                <Button Template="{StaticResource scrollButton}" Grid.Row="0" Click="ButtonScrollTop_Click">
-                    <Image Source="pack://siteoforigin:,,,/Resources/up-arrow.png" Height="16" VerticalAlignment="Center"/>
-                </Button>
-                <Button Template="{StaticResource scrollButton}" Grid.Row="2" Click="ButtonScrollBottom_Click">
-                    <Image Source="pack://siteoforigin:,,,/Resources/down-arrow.png" Height="16" VerticalAlignment="Center"/>
-                </Button>
-                <ListView Grid.Row="1" VirtualizingPanel.IsVirtualizing="True" Name="listView" d:DataContext ="{Binding Source={StaticResource DesignViewModel}}" ItemsSource="{Binding Entries}" BorderBrush="{x:Null}">
-                    <ListView.View>
-                        <GridView x:Name="gridView2">
-                            <GridViewColumn Width="24">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Image Width="12" Height="12" Source="{Binding Path=DataType, Converter={StaticResource LogDataTypeToImageSrcConverter}}"/>
-                                        <!-- this is for Product.id, you'll have to change it-->
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Width="65">
-                                <GridViewColumnHeader>
-                                    <TextBlock Text="Date"/>
-                                </GridViewColumnHeader>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <!--<TextBlock Text="{Binding Path=Date}"/>-->
-                                        <TextBlock Text="{Binding Path=Date}" Background="{x:Null}" Foreground="#FF343434" FontSize="12" FontFamily="Segoe UI Light"/>
-                                        <!-- this is for Product.id, you'll have to change it-->
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Width="60">
-                                <GridViewColumnHeader>
-                                    <TextBlock Text="Time"/>
-                                </GridViewColumnHeader>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <!--<TextBlock Text="{Binding Path=Time}"/>-->
-                                        <TextBlock Text="{Binding Path=Time}" Background="{x:Null}" Foreground="Black" FontFamily="Segoe UI Semibold"/>
-                                        <!-- this is for Product.id, you'll have to change it-->
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Width="300">
-                                <GridViewColumnHeader>
-                                    <TextBlock Text="Title"/>
-                                </GridViewColumnHeader>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <!--<TextBlock Text="{Binding Path=Title}"/>-->
-                                        <TextBlock Text="{Binding Path=Title}" Background="{x:Null}" Foreground="Black" FontWeight="{Binding FontWeight}" FontStyle="{Binding FontStyle}"/>
-                                        <!-- this is for Product.id, you'll have to change it-->
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown" />
-                            <Setter Property="Background" Value="{Binding Path=Category, Converter={StaticResource LogTypeToColorConverter}}"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="{Binding Path=Category, Converter={StaticResource LogTypeToColorHighlightedConverter}}"/>
-                                    <Setter Property="BorderBrush" Value="#50000000"/>
-                                </Trigger>
-                                <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Background" Value="{Binding Path=Category, Converter={StaticResource LogTypeToColorHighlightedConverter}}"/>
-                                    <Setter Property="BorderBrush" Value="#80000000"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-                <StackPanel Background="#f0f0f0" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="Loaded logs: " FontStyle="Italic"/>
-                    <TextBlock x:Name="textBlockNumberOfLogs" Text="0"/>
-                </StackPanel>
-            </Grid>
-            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
-            <Grid x:Name="DetailsGrid" Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="24px"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Name="treeViewTitle" FontWeight="Bold" FontSize="18" Margin="5,0,0,0"/>
-                <TreeView Grid.Row="1" Name="treeView" Background="{x:Null}" BorderBrush="{x:Null}" />
-                <TextBox Grid.Row="1" Name="textBoxLongText" TextWrapping="Wrap" Background="{x:Null}" BorderThickness="0" IsReadOnly="True" Visibility="Collapsed"/>
-            </Grid>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+        <Grid x:Name="DetailsGrid" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24px"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Name="treeViewTitle" FontWeight="Bold" FontSize="18" Margin="5,0,0,0"/>
+            <TreeView Grid.Row="1" Name="treeView" Background="{x:Null}" BorderBrush="{x:Null}" />
+            <TextBox Grid.Row="1" Name="textBoxLongText" TextWrapping="Wrap" Background="{x:Null}" BorderThickness="0" IsReadOnly="True" Visibility="Collapsed"/>
         </Grid>
-    </DockPanel>
+    </Grid>
 </UserControl>

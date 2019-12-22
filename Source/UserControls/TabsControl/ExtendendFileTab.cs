@@ -12,5 +12,7 @@ namespace JsonFlier.UserControls.TabsControl
         }
 
         public string FilePath { get; set; }
+
+        public Control[] ToolbarControls { get; set; }
     }
 }

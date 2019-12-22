@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:usercontrols="clr-namespace:JsonFlier.UserControls"
+        xmlns:toolbar="clr-namespace:JsonFlier.UserControls.Toolbar"
         xmlns:tabscontrol="clr-namespace:JsonFlier.UserControls.TabsControl"
         mc:Ignorable="d"
         Title="Json Flier" Height="450" Width="800" ResizeMode="CanResizeWithGrip" AllowsTransparency="True" WindowStyle="None">
@@ -35,7 +36,7 @@
             <ColumnDefinition Width="26*"/>
         </Grid.ColumnDefinitions>
         <DockPanel Grid.ColumnSpan="2">
-            <Grid DockPanel.Dock="Top" Height="18px" MouseDown="Grid_MouseDown" Background="#00000000">
+            <Grid DockPanel.Dock="Top" Height="18px" MouseDown="Grid_MouseDown" Background="White">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="24"/>
@@ -73,7 +74,11 @@
                     <Separator/>
                 </MenuItem>
             </Menu>
-            <tabscontrol:ExtendedTabControl x:Name="extendedTabControl" />
+            <toolbar:ToolBar x:Name="toolbar" DockPanel.Dock="Top" Height="32px"/>
+            <DockPanel Background="#FFB4B4B4">
+                <Grid Height="3" DockPanel.Dock="Top"/>
+                <tabscontrol:ExtendedTabControl x:Name="extendedTabControl" />
+            </DockPanel>
         </DockPanel>
     </Grid>
 </Window>
