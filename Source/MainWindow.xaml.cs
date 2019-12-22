@@ -2,6 +2,7 @@
 using JsonFlier.UserControls.Configuration;
 using JsonFlier.UserControls.Logs;
 using JsonFlier.UserControls.TabsControl;
+using JsonFlier.UserControls.Toolbar.ActionFactories;
 using JsonFlier.Utilities;
 using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
@@ -98,13 +99,23 @@ namespace JsonFlier
             //}
         }
 
-        public void OpenSimpleText(string title, string text, string filePath = null) => OpenTab(title, filePath, new PlainText(text, filePath));
-
-        public void OpenJArray(string title, IEnumerable<JObject> jArray, string filePath = null) => OpenTab(title, filePath, new JsonArray(jArray, filePath));
-
-        public void OpenTab(string fileName, string path, UserControl userControl)
+        public void OpenSimpleText(string title, string text, string filePath = null)
         {
-            var tab = new ExtendendFileTab() { FileName = fileName, FilePath = path, Content = userControl };
+            var control = new PlainText(text, filePath);
+            //var toolbarControls = new JsonArrayActionFactory(control).CreateActions();
+            OpenTab(title, filePath, control, new Control[] { });
+        }
+
+        public void OpenJArray(string title, IEnumerable<JObject> jArray, string filePath = null)
+        {
+            var control = new JsonArray(jArray, filePath);
+            var toolbarControls = new JsonArrayActionFactory(control).CreateActions();
+            OpenTab(title, filePath, control, toolbarControls);
+        }
+
+        public void OpenTab(string fileName, string path, UserControl userControl, Control[] toolbarControls)
+        {
+            var tab = new ExtendendFileTab() { FileName = fileName, FilePath = path, Content = userControl, ToolbarControls = toolbarControls };
 
             if (ExtendedTabControl.CustomPage != null)
             {
@@ -159,6 +170,18 @@ namespace JsonFlier
         {
             menuItemRefresh.IsEnabled = CanRefreshActiveTab;
             menuItemClose.IsEnabled = OpenedTab != null;
+        }
+
+        private void RefreshToolbar()
+        {
+            if (OpenedTab != null)
+            {
+                toolbar.LoadToolbarActions(OpenedTab.ToolbarControls);
+            }
+            else
+            {
+                toolbar.Clear();
+            }
         }
 
         // Event Handlers
@@ -239,6 +262,7 @@ namespace JsonFlier
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RefreshAvailabilityOfControls();
+            RefreshToolbar();
         }
 
         private void Grid_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -262,13 +286,15 @@ namespace JsonFlier
             {
                 ResizeMode = ResizeMode.CanResizeWithGrip;
                 this.WindowState = WindowState.Normal;
-                MaxButton.Content = new Image() { Source = new BitmapImage(new Uri("/JsonFlier;component/Resources/maximize_16.png", UriKind.Relative)) };
+                sizeIcon.Data = Geometry.Parse("M0,0L1,0L1,1L0,1L0,0L1,0");
+                //MaxButton.Content = new Image() { Source = new BitmapImage(new Uri("/JsonFlier;component/Resources/maximize_16.png", UriKind.Relative)) };
             }
             else
             {
                 ResizeMode = ResizeMode.NoResize;
                 this.WindowState = WindowState.Maximized;
-                MaxButton.Content = new Image() {Source= new BitmapImage(new Uri("/JsonFlier;component/Resources/collapse_16.png", UriKind.Relative)) };
+                sizeIcon.Data = Geometry.Parse("M0,0L1,0L1,1L0,1L0,0L1,0M0.4,0L0.4,-0.4L1.4,-0.4L1.4,0.6L1,0.6");
+                //MaxButton.Content = new Image() { Source = new BitmapImage(new Uri("/JsonFlier;component/Resources/collapse_16.png", UriKind.Relative)) };
             }
         }
 

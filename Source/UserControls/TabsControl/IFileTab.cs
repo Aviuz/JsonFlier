@@ -11,5 +11,7 @@ namespace JsonFlier.UserControls.TabsControl
         bool IsFocused { get; }
 
         object Content { get; }
+
+        Control[] ToolbarControls { get; set; }
     }
 }

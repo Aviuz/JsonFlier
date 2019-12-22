@@ -112,7 +112,15 @@
     <Compile Include="Bookmarks\Bookmark.cs" />
     <Compile Include="Bookmarks\BookmarkManager.cs" />
     <Compile Include="Bookmarks\LogFileInfo.cs" />
+    <Compile Include="Command\Command_Refresh.cs" />
+    <Compile Include="Command\Command_ScrollDown.cs" />
+    <Compile Include="Command\Command_ScrollUp.cs" />
+    <Compile Include="Command\Command_Today.cs" />
+    <Compile Include="Command\DateCommandBundle.cs" />
+    <Compile Include="Command\DateTimeListener.cs" />
+    <Compile Include="Command\ICommand.cs" />
     <Compile Include="Mock\LogEntriesMockUp.cs" />
+    <Compile Include="Mock\MockText.cs" />
     <Compile Include="UserControls\Configuration\AddToBookmarkWindow.xaml.cs">
       <DependentUpon>AddToBookmarkWindow.xaml</DependentUpon>
     </Compile>
@@ -127,12 +135,11 @@
     <Compile Include="UserControls\Logs\Converters\LogTypeToColorHighlightedConverter.cs" />
     <Compile Include="UserControls\Logs\Converters\LogTypeToColorConverter.cs" />
     <Compile Include="UserControls\Logs\LogEntryModel.cs" />
+    <Compile Include="UserControls\TabsControl\ExtendedTabControl.xaml.cs">
+      <DependentUpon>ExtendedTabControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TabsControl\IFileTab.cs" />
     <Compile Include="UserControls\TabsControl\IRefreshable.cs" />
-    <Compile Include="UserControls\TabsControl\CloseableHeader.xaml.cs">
-      <DependentUpon>CloseableHeader.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\TabsControl\ExtendedTabControl.cs" />
     <Compile Include="UserControls\TabsControl\CloseableTab.xaml.cs">
       <DependentUpon>CloseableTab.xaml</DependentUpon>
     </Compile>
@@ -145,6 +152,23 @@
     <Compile Include="UserControls\TabsControl\ExtendendFileTab.cs" />
     <Compile Include="UserControls\TabsControl\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Toolbar\ActionFactories\IActionFactory.cs" />
+    <Compile Include="UserControls\Toolbar\ActionFactories\JsonArrayActionFactory.cs" />
+    <Compile Include="UserControls\Toolbar\Actions\RefreshAction.cs" />
+    <Compile Include="UserControls\Toolbar\Actions\ScrollDownAction.cs" />
+    <Compile Include="UserControls\Toolbar\Actions\ScrollUpAction.cs" />
+    <Compile Include="UserControls\Toolbar\Actions\SelectDateAction.xaml.cs">
+      <DependentUpon>SelectDateAction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Toolbar\Actions\SelectEndDateAction.cs" />
+    <Compile Include="UserControls\Toolbar\Actions\SelectStartDateAction.cs" />
+    <Compile Include="UserControls\Toolbar\Actions\SimpleAction.xaml.cs">
+      <DependentUpon>SimpleAction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Toolbar\Actions\TodayAction.cs" />
+    <Compile Include="UserControls\Toolbar\ToolBar.xaml.cs">
+      <DependentUpon>ToolBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\JArrayParser.cs" />
     <Page Include="MainWindow.xaml">
@@ -171,10 +195,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\TabsControl\CloseableHeader.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\TabsControl\CloseableTab.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -187,7 +207,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\TabsControl\ExtendedTabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\TabsControl\WelcomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Toolbar\Actions\SelectDateAction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Toolbar\Actions\SimpleAction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Toolbar\ToolBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
