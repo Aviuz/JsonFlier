@@ -32,4 +32,4 @@ using System.Windows;
 )]
 
 
-[assembly: AssemblyVersion("0.2.0")]
+[assembly: AssemblyVersion("0.3.0")]
