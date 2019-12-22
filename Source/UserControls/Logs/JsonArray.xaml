@@ -24,31 +24,40 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+        <ControlTemplate x:Key="toolBarButton" TargetType="Button">
+            <Grid x:Name="backgroundGrid" Background="Transparent">
+                <ContentPresenter />
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="backgroundGrid" Property="Background" Value="#FF818181"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
     </UserControl.Resources>
     <DockPanel Background="White">
-        <Grid DockPanel.Dock="Top" Background="#FFE9F9FD">
-            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0">
-                <Border BorderBrush="#FF7E7E7E" BorderThickness="1" Margin="1" Padding="1">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <Button x:Name="buttonScrollTop" Click="ButtonScrollTop_Click">
-                            <Image Source="pack://siteoforigin:,,,/Resources/up-long-arrow.png" Height="16" />
-                        </Button>
-                        <Grid Width="2"/>
-                        <Button x:Name="buttonScrollBottom" Click="ButtonScrollBottom_Click">
-                            <Image Source="pack://siteoforigin:,,,/Resources/down-long-arrow.png" Height="16" />
-                        </Button>
-                        <Grid Width="2"/>
-                        <Grid Width="1" Background="#FF7E7E7E"/>
-                        <Grid Width="2"/>
-                        <Button x:Name="buttonRefresh" Click="ButtonRefresh_Click">
-                            <Image Source="pack://siteoforigin:,,,/Resources/reload.png" Height="16" />
-                        </Button>
-                        <Grid Width="2"/>
-                        <Button x:Name="buttonToday" Click="ButtonToday_Click">
-                            <Image Source="pack://siteoforigin:,,,/Resources/calendar.png" Height="16" />
-                        </Button>
-                    </StackPanel>
-                </Border>
+        <Grid DockPanel.Dock="Top" Background="#FFE8E8E8">
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Grid Width="4"/>
+                    <Button x:Name="buttonScrollTop" Click="ButtonScrollTop_Click" Template="{StaticResource toolBarButton}">
+                        <Image Source="pack://siteoforigin:,,,/Resources/up-long-arrow.png" Height="16" />
+                    </Button>
+                    <Grid Width="4"/>
+                    <Button x:Name="buttonScrollBottom" Click="ButtonScrollBottom_Click" Template="{StaticResource toolBarButton}">
+                        <Image Source="pack://siteoforigin:,,,/Resources/down-long-arrow.png" Height="16" />
+                    </Button>
+                    <Grid Width="4"/>
+                    <Grid Width="1" Background="#FF7E7E7E"/>
+                    <Grid Width="4"/>
+                    <Button x:Name="buttonRefresh" Click="ButtonRefresh_Click" Template="{StaticResource toolBarButton}">
+                        <Image Source="pack://siteoforigin:,,,/Resources/reload.png" Height="16" />
+                    </Button>
+                    <Grid Width="4"/>
+                    <Button x:Name="buttonToday" Click="ButtonToday_Click" Template="{StaticResource toolBarButton}">
+                        <Image Source="pack://siteoforigin:,,,/Resources/calendar.png" Height="16" />
+                    </Button>
+                </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="5,2" VerticalAlignment="Center">
                     <TextBlock Text="From:"/>
                     <Grid Width="10"/>
@@ -65,10 +74,6 @@
                         <Image Source="pack://siteoforigin:,,,/Resources/close.png" Height="12" />
                     </Button>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="Loaded logs: "/>
-                    <TextBlock x:Name="textBlockNumberOfLogs" Text="0"/>
-                </StackPanel>
             </StackPanel>
         </Grid>
         <Grid>
@@ -82,6 +87,7 @@
                     <RowDefinition Height="18"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="18"/>
+                    <RowDefinition Height="16"/>
                 </Grid.RowDefinitions>
                 <Button Template="{StaticResource scrollButton}" Grid.Row="0" Click="ButtonScrollTop_Click">
                     <Image Source="pack://siteoforigin:,,,/Resources/up-arrow.png" Height="16" VerticalAlignment="Center"/>
@@ -89,7 +95,7 @@
                 <Button Template="{StaticResource scrollButton}" Grid.Row="2" Click="ButtonScrollBottom_Click">
                     <Image Source="pack://siteoforigin:,,,/Resources/down-arrow.png" Height="16" VerticalAlignment="Center"/>
                 </Button>
-                <ListView Grid.Row="1" VirtualizingPanel.IsVirtualizing="True" Name="listView" d:DataContext ="{Binding Source={StaticResource DesignViewModel}}" ItemsSource="{Binding Entries}">
+                <ListView Grid.Row="1" VirtualizingPanel.IsVirtualizing="True" Name="listView" d:DataContext ="{Binding Source={StaticResource DesignViewModel}}" ItemsSource="{Binding Entries}" BorderBrush="{x:Null}">
                     <ListView.View>
                         <GridView x:Name="gridView2">
                             <GridViewColumn Width="24">
@@ -155,6 +161,10 @@
                         </Style>
                     </ListView.ItemContainerStyle>
                 </ListView>
+                <StackPanel Background="#f0f0f0" Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="Loaded logs: " FontStyle="Italic"/>
+                    <TextBlock x:Name="textBlockNumberOfLogs" Text="0"/>
+                </StackPanel>
             </Grid>
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
             <Grid x:Name="DetailsGrid" Grid.Column="2">
