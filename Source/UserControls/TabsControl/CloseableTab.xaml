@@ -29,7 +29,7 @@
                         <ColumnDefinition Width="16"/>
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="3" Name="button_close" ToolTip="Close" Template="{StaticResource tabButton}" Click="ButtonClose_Click" Visibility="Hidden">
-                        <Image Source="pack://siteoforigin:,,,/Resources/close.png" Width="12" Height="12" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Path x:Name="icon" Grid.Column="3" Data="M0,0L12,12M0,12L12,0" Stroke="Black" Width="12" Height="12" StrokeThickness="2" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="Fill"/>
                     </Button>
                     <!--Text="{Binding Title}"-->
                     <TextBlock Grid.Column="1" Name="label_TabTitle" Text="{Binding Title}" d:DataContext="{Binding Source={StaticResource MockText}}" Height="18" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Courier" FontSize="13" Padding="2" SizeChanged="TabTitle_SizeChanged"/>
@@ -37,12 +37,14 @@
             </Grid>
             <ControlTemplate.Triggers>
                 <Trigger SourceName="Panel" Property="IsMouseOver" Value="True">
-                    <Setter TargetName="Panel" Property="Background" Value="#FFCAEBFF" />
+                    <Setter TargetName="Panel" Property="Background" Value="#FF2B81FF" />
                     <Setter TargetName="button_close" Property="Visibility" Value="Visible"/>
                 </Trigger>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter TargetName="Panel" Property="Background" Value="DarkBlue" />
-                    <Setter TargetName="label_TabTitle" Property="Foreground" Value="White" />
+                    <Setter TargetName="button_close" Property="Visibility" Value="Visible"/>
+                    <Setter TargetName="Panel" Property="Background" Value="#FF8EBCFF" />
+                    <!--<Setter TargetName="label_TabTitle" Property="Foreground" Value="White" />
+                    <Setter TargetName="icon" Property="Stroke" Value="White" />-->
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>

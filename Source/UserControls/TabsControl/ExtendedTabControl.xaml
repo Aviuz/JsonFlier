@@ -10,7 +10,7 @@
         <ControlTemplate x:Key="tabControlTemplate" TargetType="TabControl">
             <DockPanel>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" IsItemsHost="True" />
-                <Grid DockPanel.Dock="Top" Height="2" Background="DarkBlue" />
+                <Grid DockPanel.Dock="Top" Height="2" Background="#FF8EBCFF" />
                 <Border BorderBrush="Gray" BorderThickness="1">
                     <Grid Background='White'>
                         <ContentPresenter ContentSource="SelectedContent"/>
