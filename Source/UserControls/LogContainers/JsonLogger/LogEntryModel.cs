@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,7 +36,7 @@ namespace JsonFlier.UserControls.Logs
         {
             return new LogEntryModel()
             {
-                Title = log["title"]?.ToString(),
+                Title = Regex.Replace(log["title"]?.ToString(), @"\t|\n|\r", ""),
                 Category = log["category"]?.ToString(),
                 DataType = log["data"] != null ? log["dataType"]?.ToString() : null,
                 FontWeight = log["data"] != null && log["dataType"] != null ? FontWeights.Bold : FontWeights.Normal,

@@ -1,10 +1,12 @@
 using JsonFlier.Command;
+using JsonFlier.Constants;
 using JsonFlier.UserControls.TabsControl;
 using JsonFlier.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows;
@@ -21,15 +23,15 @@ namespace JsonFlier.UserControls.Logs
         private string filePath;
         private int numberOfEntries;
         private Thread loadingThread;
+        private string[] visibleLogLevels = JsonLoggerLogLevels.AllLogLevels;
 
         public JsonArray(IEnumerable<JObject> logArray, string filePath = null)
         {
             InitializeComponent();
 
-            DateTimeStartListener = new DateTimeListener(null);
-            DateTimeEndListener = new DateTimeListener(null);
             DateTimeStartListener.OnValueChanged += OnDateTimeChanged;
             DateTimeEndListener.OnValueChanged += OnDateTimeChanged;
+            MinimumLogLevelListener.OnValueChanged += OnLogLevelChanged;
 
             if (filePath != null)
             {
@@ -44,6 +46,8 @@ namespace JsonFlier.UserControls.Logs
         public DateTimeListener DateTimeStartListener { get; set; } = new DateTimeListener(null);
 
         public DateTimeListener DateTimeEndListener { get; set; } = new DateTimeListener(null);
+
+        public StringListener MinimumLogLevelListener { get; set; } = new StringListener(null);
 
         public DateTime? DateTimeStart
         {
@@ -61,6 +65,12 @@ namespace JsonFlier.UserControls.Logs
             {
                 DateTimeEndListener.DateTime = value;
             }
+        }
+
+        public String MinimumLogLevel
+        {
+            get => MinimumLogLevelListener.Value;
+            set => MinimumLogLevelListener.Value = value;
         }
 
         public int NumberOfEntries
@@ -108,12 +118,6 @@ namespace JsonFlier.UserControls.Logs
             });
             loadingThread.Priority = ThreadPriority.BelowNormal;
             loadingThread.Start();
-        }
-
-        private void AppendUserControl(UserControl userControl)
-        {
-            DockPanel.SetDock(userControl, Dock.Top);
-            listView.Items.Add(userControl);
         }
 
         public void Refresh()
@@ -182,6 +186,15 @@ namespace JsonFlier.UserControls.Logs
                         return false;
                 }
             }
+            if (MinimumLogLevel != null)
+            {
+
+                if (!visibleLogLevels.Contains(logObject["category"]?.ToString()))
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
 
@@ -189,6 +202,15 @@ namespace JsonFlier.UserControls.Logs
         {
             if (CanRefresh)
             {
+                Refresh();
+            }
+        }
+
+        private void OnLogLevelChanged(string oldValue, string newValue)
+        {
+            if (CanRefresh)
+            {
+                visibleLogLevels = JsonLoggerLogLevels.AtLevelOrAbove(newValue);
                 Refresh();
             }
         }
@@ -201,115 +223,13 @@ namespace JsonFlier.UserControls.Logs
             }
         }
 
-        private void LoadJsonObject(JObject logEntry)
-        {
-            if (logEntry["data"] is null)
-            {
-                treeViewTitle.Visibility = Visibility.Collapsed;
-                treeView.Visibility = Visibility.Collapsed;
-                textBoxLongText.Visibility = Visibility.Collapsed;
-                DetailsGrid.Background = new SolidColorBrush(Color.FromRgb(0xdd, 0xdd, 0xdd));
-
-                return;
-            }
-
-            DetailsGrid.Background = new SolidColorBrush(Color.FromArgb(0x0, 0x0, 0x0, 0x0));
-            treeView.Items.Clear();
-
-            treeViewTitle.Text = logEntry?["title"].ToString();
-            treeViewTitle.Visibility = Visibility.Visible;
-
-            if (logEntry["data"] is JValue)
-            {
-                //var textBox = new TextBox()
-                //{
-                //    Text = logEntry["data"].ToString(),
-                //    TextWrapping = TextWrapping.Wrap,
-                //    Background = null,
-                //    BorderThickness = new Thickness(0),
-                //    IsReadOnly = true,
-                //};
-
-                //treeView.Items.Add(textBox);
-                treeView.Visibility = Visibility.Collapsed;
-                textBoxLongText.Visibility = Visibility.Visible;
-                textBoxLongText.Text = logEntry["data"].ToString();
-            }
-            else if (logEntry["data"] is JObject)
-            {
-                treeView.Visibility = Visibility.Visible;
-                textBoxLongText.Visibility = Visibility.Collapsed;
-
-                foreach (var property in ((JObject)logEntry["data"]).Properties())
-                {
-                    var treeViewItem = new TreeViewItem() { Header = property.Name };
-                    AddRecursive(treeViewItem, property.Value);
-                    treeView.Items.Add(treeViewItem);
-                }
-            }
-            else if (logEntry["data"] is JArray)
-            {
-                treeView.Visibility = Visibility.Visible;
-                textBoxLongText.Visibility = Visibility.Collapsed;
-
-                var array = (JArray)logEntry["data"];
-                for (int i = 0; i < array.Count; i++)
-                {
-                    var treeViewItem = new TreeViewItem() { Header = $"[{i}]" };
-                    AddRecursive(treeViewItem, array[i]);
-                    treeView.Items.Add(treeViewItem);
-                }
-            }
-        }
-
-        private void AddRecursive(TreeViewItem parent, JToken item)
-        {
-            if (item == null)
-            {
-                return;
-            }
-
-            if (item is JValue)
-            {
-                if (((JValue)item).Value == null)
-                {
-                    var treeViewItem = new TreeViewItem() { Header = "<< null >>", FontStyle = FontStyles.Italic };
-                    parent.Items.Add(treeViewItem);
-                }
-                else
-                {
-                    var treeViewItem = new TreeViewItem() { Header = item.ToString() };
-                    parent.Items.Add(treeViewItem);
-                }
-            }
-            else if (item is JArray)
-            {
-                var array = (JArray)item;
-                for (int i = 0; i < array.Count; i++)
-                {
-                    var treeViewItem = new TreeViewItem() { Header = $"[{i}]" };
-                    AddRecursive(treeViewItem, array[i]);
-                    parent.Items.Add(treeViewItem);
-                }
-            }
-            else if (item is JObject)
-            {
-                foreach (var property in ((JObject)item).Properties())
-                {
-                    var treeViewItem = new TreeViewItem() { Header = property.Name };
-                    AddRecursive(treeViewItem, property.Value);
-                    parent.Items.Add(treeViewItem);
-                }
-            }
-        }
-
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var item = sender as ListViewItem;
             var logData = item?.Content as LogEntryModel;
             if (logData != null)
             {
-                LoadJsonObject(logData.Json);
+                jsonPresenter.Data = logData.Json;
             }
         }
 

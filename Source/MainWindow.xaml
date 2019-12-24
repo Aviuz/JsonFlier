@@ -7,7 +7,7 @@
         xmlns:toolbar="clr-namespace:JsonFlier.UserControls.Toolbar"
         xmlns:tabscontrol="clr-namespace:JsonFlier.UserControls.TabsControl"
         mc:Ignorable="d"
-        Title="Json Flier" Height="450" Width="800" ResizeMode="CanResizeWithGrip" AllowsTransparency="True" WindowStyle="None">
+        Title="Json Flier" Height="600" Width="1000" ResizeMode="CanResizeWithGrip" AllowsTransparency="True" WindowStyle="None">
     <Window.Resources>
         <ControlTemplate x:Key="titleButton" TargetType="Button">
             <Grid Name="BackGrid">

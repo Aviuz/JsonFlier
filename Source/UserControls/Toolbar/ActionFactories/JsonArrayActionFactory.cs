@@ -35,6 +35,10 @@ namespace JsonFlier.UserControls.Toolbar.ActionFactories
             yield return new SelectStartDateAction(JsonArrayControl);
             yield return new Separator();
             yield return new SelectEndDateAction(JsonArrayControl);
+
+            yield return new Separator();
+
+            yield return new MinimumLogLevelSelector(JsonArrayControl);
         }
     }
 }
