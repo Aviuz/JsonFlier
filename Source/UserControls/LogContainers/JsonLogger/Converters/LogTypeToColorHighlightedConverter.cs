@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JsonFlier.Constants;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -15,16 +16,16 @@ namespace JsonFlier.UserControls.Logs.Converters
         {
             switch (value?.ToString())
             {
-                case "Critical":
+                case JsonLoggerLogLevels.Critical:
                     return new SolidColorBrush(Color.FromRgb(0xfa, 0xbe, 0xbe));
 
-                case "Warning":
+                case JsonLoggerLogLevels.Warning:
                     return new SolidColorBrush(Color.FromRgb(0xff, 0xff, 0xc8));
 
-                case "Info":
+                case JsonLoggerLogLevels.Info:
                     return new SolidColorBrush(Color.FromRgb(0xff, 0xff, 0xff));
 
-                case "Trace":
+                case JsonLoggerLogLevels.Trace:
                     return new SolidColorBrush(Color.FromRgb(0xff, 0xff, 0xff));
 
                 default:
