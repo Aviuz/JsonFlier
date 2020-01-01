@@ -16,13 +16,13 @@ namespace JsonFlier.UserControls.Logs.Converters
             switch (value?.ToString())
             {
                 case "Text":
-                    return "pack://siteoforigin:,,,/Resources/text.png";
+                    return "/JsonFlier;component/Resources/text.png";
 
                 case "Exception":
-                    return "pack://siteoforigin:,,,/Resources/exception.png";
+                    return "/JsonFlier;component/Resources/exception.png";
 
                 case "Object":
-                    return "pack://siteoforigin:,,,/Resources/cube.png";
+                    return "/JsonFlier;component/Resources/cube.png";
 
                 default:
                     return null;

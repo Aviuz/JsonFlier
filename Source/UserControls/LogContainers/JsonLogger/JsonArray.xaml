@@ -51,10 +51,10 @@
                 <RowDefinition Height="16"/>
             </Grid.RowDefinitions>
             <Button Template="{StaticResource scrollButton}" Grid.Row="0" Click="ButtonScrollTop_Click">
-                <Image Source="pack://siteoforigin:,,,/Resources/up-arrow.png" Height="16" VerticalAlignment="Center"/>
+                <Image Source="/JsonFlier;component/Resources/up-arrow.png" Height="16" VerticalAlignment="Center"/>
             </Button>
             <Button Template="{StaticResource scrollButton}" Grid.Row="2" Click="ButtonScrollBottom_Click">
-                <Image Source="pack://siteoforigin:,,,/Resources/down-arrow.png" Height="16" VerticalAlignment="Center"/>
+                <Image Source="/JsonFlier;component/Resources/down-arrow.png" Height="16" VerticalAlignment="Center"/>
             </Button>
             <ListView Grid.Row="1" VirtualizingPanel.IsVirtualizing="True" Name="listView" d:DataContext ="{Binding Source={StaticResource DesignViewModel}}" ItemsSource="{Binding Entries}" BorderBrush="{x:Null}">
                 <ListView.View>
