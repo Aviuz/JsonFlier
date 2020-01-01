@@ -12,8 +12,13 @@
             <Setter Property="Height" Value="44"/>
             <Setter Property="Width" Value="186"/>
             <Setter Property="Margin" Value="30, 30, 30, 0"/>
-            <Setter Property="Background" Value="#FFF7F7F7"/>
+            <Setter Property="Background" Value="#FFE2F1FF"/>
             <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFC5E3FF"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <StackPanel x:Name="stackPanel">
