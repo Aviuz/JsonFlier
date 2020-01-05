@@ -186,6 +186,7 @@
       <DependentUpon>ToolBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\JArrayParser.cs" />
+    <Compile Include="Window\WindowResizer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

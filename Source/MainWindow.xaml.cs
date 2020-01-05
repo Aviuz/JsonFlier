@@ -1,4 +1,4 @@
-using JsonFlier.Bookmarks;
+﻿using JsonFlier.Bookmarks;
 using JsonFlier.UserControls.Configuration;
 using JsonFlier.UserControls.Logs;
 using JsonFlier.UserControls.TabsControl;
@@ -32,7 +32,7 @@ namespace JsonFlier
         {
             InitializeComponent();
 
-            MaxHeight = CurrentScreen().WorkingArea.Height;
+            var resizer = new WindowResizer(this);
 
             LoadBookmarsToMenu();
             BookmarkManager.BookmarksChanged += OnBookmarksChanged;
@@ -273,7 +273,7 @@ namespace JsonFlier
             {
                 if (e.ClickCount == 2)
                 {
-                    AdjustWindowSize();
+                    ToggleWindowMaximized();
                 }
                 else
                 {
@@ -282,23 +282,7 @@ namespace JsonFlier
             }
         }
 
-        private void AdjustWindowSize()
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                ResizeMode = ResizeMode.CanResizeWithGrip;
-                WindowState = WindowState.Normal;
-                sizeIcon.Data = Geometry.Parse("M0,0L1,0L1,1L0,1L0,0L1,0");
-                //MaxButton.Content = new Image() { Source = new BitmapImage(new Uri("/JsonFlier;component/Resources/maximize_16.png", UriKind.Relative)) };
-            }
-            else
-            {
-                ResizeMode = ResizeMode.NoResize;
-                WindowState = WindowState.Maximized;
-                sizeIcon.Data = Geometry.Parse("M0,0L1,0L1,1L0,1L0,0L1,0M0.4,0L0.4,-0.4L1.4,-0.4L1.4,0.6L1,0.6");
-                //MaxButton.Content = new Image() { Source = new BitmapImage(new Uri("/JsonFlier;component/Resources/collapse_16.png", UriKind.Relative)) };
-            }
-        }
+        private void ToggleWindowMaximized() => WindowState ^= WindowState.Maximized;
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -307,7 +291,7 @@ namespace JsonFlier
 
         private void MaxButton_Click(object sender, RoutedEventArgs e)
         {
-            AdjustWindowSize();
+            ToggleWindowMaximized();
         }
 
         private void MinButton_Click(object sender, RoutedEventArgs e)
@@ -315,29 +299,22 @@ namespace JsonFlier
             this.WindowState = WindowState.Minimized;
         }
 
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Normal)
+            {
+                sizeIcon.Data = Geometry.Parse("M0,0L1,0L1,1L0,1L0,0L1,0");
+            }
+            else if (WindowState == WindowState.Maximized)
+            {
+                sizeIcon.Data = Geometry.Parse("M0,0L1,0L1,1L0,1L0,0L1,0M0.4,0L0.4,-0.4L1.4,-0.4L1.4,0.6L1,0.6");
+            }
+        }
+
         // Dispose
         public void Dispose()
         {
             BookmarkManager.BookmarksChanged -= OnBookmarksChanged;
-        }
-
-        private void Grid_MouseEnter(object sender, MouseEventArgs e)
-        {
-        }
-
-        private void Grid_MouseLeave(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        public System.Windows.Forms.Screen CurrentScreen()
-        {
-            return System.Windows.Forms.Screen.FromPoint(new System.Drawing.Point((int)Left, (int)Top));
-        }
-
-        private void Window_LocationChanged(object sender, EventArgs e)
-        {
-            MaxHeight = CurrentScreen().WorkingArea.Height;
         }
     }
 }
