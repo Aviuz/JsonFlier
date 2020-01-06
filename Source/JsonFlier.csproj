@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -112,8 +112,10 @@
     <Compile Include="Bookmarks\Bookmark.cs" />
     <Compile Include="Bookmarks\BookmarkManager.cs" />
     <Compile Include="Bookmarks\LogFileInfo.cs" />
+    <Compile Include="Command\Command_AddToBookmark.cs" />
     <Compile Include="Command\Command_CollapseTreeView.cs" />
     <Compile Include="Command\Command_ExpandTreeView.cs" />
+    <Compile Include="Command\Command_OpenFile.cs" />
     <Compile Include="Command\Command_Refresh.cs" />
     <Compile Include="Command\Command_ScrollDown.cs" />
     <Compile Include="Command\Command_ScrollUp.cs" />
@@ -159,14 +161,17 @@
     <Compile Include="UserControls\TabsControl\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Toolbar\ActionFactories\FileExplorerActionFactory.cs" />
     <Compile Include="UserControls\Toolbar\ActionFactories\IActionFactory.cs" />
     <Compile Include="UserControls\Toolbar\ActionFactories\JsonArrayActionFactory.cs" />
     <Compile Include="UserControls\Toolbar\ActionFactories\TreeViewActionFactory.cs" />
+    <Compile Include="UserControls\Toolbar\Actions\AddToBookmarkAction.cs" />
     <Compile Include="UserControls\Toolbar\Actions\CollapseTreeViewAction.cs" />
     <Compile Include="UserControls\Toolbar\Actions\ExpandTreeViewAction.cs" />
     <Compile Include="UserControls\Toolbar\Actions\MinimumLogLevelSelector.xaml.cs">
       <DependentUpon>MinimumLogLevelSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Toolbar\Actions\OpenFileAction.cs" />
     <Compile Include="UserControls\Toolbar\Actions\RefreshAction.cs" />
     <Compile Include="UserControls\Toolbar\Actions\ScrollDownAction.cs" />
     <Compile Include="UserControls\Toolbar\Actions\ScrollUpAction.cs" />

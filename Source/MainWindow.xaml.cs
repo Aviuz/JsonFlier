@@ -1,4 +1,5 @@
-using JsonFlier.Bookmarks;
+﻿using JsonFlier.Bookmarks;
+using JsonFlier.Command;
 using JsonFlier.UserControls.Configuration;
 using JsonFlier.UserControls.Logs;
 using JsonFlier.UserControls.TabsControl;
@@ -26,13 +27,16 @@ namespace JsonFlier
     {
         // Fields
         private List<object> loadedBookmarks = new List<object>();
+        private IActionFactory fileExplorerActionFactory;
+        private WindowResizer resizer;
 
         // Constructor
         public MainWindow()
         {
             InitializeComponent();
 
-            var resizer = new WindowResizer(this);
+            resizer = new WindowResizer(this);
+            fileExplorerActionFactory = new FileExplorerActionFactory(this);
 
             LoadBookmarsToMenu();
             BookmarkManager.BookmarksChanged += OnBookmarksChanged;
@@ -64,11 +68,8 @@ namespace JsonFlier
         // Public methods (IFileExplorer)
         public void ShowOpenFileDialog()
         {
-            var dialog = new OpenFileDialog();
-            if (dialog.ShowDialog() == true)
-            {
-                OpenFile(dialog.FileName);
-            }
+            var command = new Command_OpenFile(this);
+            command.Execute();
         }
 
         public void OpenFile(string path, string fileName = null)
@@ -176,6 +177,8 @@ namespace JsonFlier
 
         private void RefreshToolbar()
         {
+            toolbar.LoadToolbarActions("FileExplorer", fileExplorerActionFactory.CreateActions());
+
             if (OpenedTab != null)
             {
                 toolbar.LoadToolbarActions("TabActions", OpenedTab.ToolbarControls);
@@ -197,16 +200,8 @@ namespace JsonFlier
 
         private void AddBookmark_Click(object sender, RoutedEventArgs e)
         {
-            var openedTab = this.OpenedTab;
-            if (openedTab != null && openedTab.FileName != null && !string.IsNullOrWhiteSpace(openedTab.FilePath))
-            {
-                var window = new AddToBookmarkWindow(openedTab.FileName, openedTab.FilePath, this);
-                window.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("You need to have opened file", "Can't add bookmark");
-            }
+            var command = new Command_AddToBookmark(this);
+            command.Execute();
         }
 
         private void OnBookmarksChanged(object sender, EventArgs e)
