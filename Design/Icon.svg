@@ -15,10 +15,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="IconV2.svg"
-   inkscape:export-filename="D:\Git Repository\JsonFlier\Design\IconV2.png"
-   inkscape:export-xdpi="91.507065"
-   inkscape:export-ydpi="91.507065">
+   sodipodi:docname="Icon.svg"
+   inkscape:export-filename="D:\Git Repository\JsonFlier\Design\Icon.png"
+   inkscape:export-xdpi="82.247444"
+   inkscape:export-ydpi="82.247444">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="-10.180195"
-     inkscape:cy="19.52729"
+     inkscape:cx="24.155933"
+     inkscape:cy="49.741345"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -61,14 +61,14 @@
      id="layer1"
      transform="translate(-2.0371868,-0.79649632)">
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.67515481;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 6.4915538,17.148495 C 11.776318,16.974202 10.643587,10.64022 13.510123,5.0897189 l 4.791781,-0.037521"
+       style="fill:none;stroke:#000000;stroke-width:2.175;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 6.4915538,17.148495 C 11.776318,16.974202 10.643587,10.64022 13.510123,5.0897189 l 5.075263,-0.037521"
        id="path837"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1.67515481;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 9.6970054,11.00847 14.924902,10.9826"
+       style="fill:none;stroke:#000000;stroke-width:2.175;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 9.4135233,11.00847 15.208384,10.9826"
        id="path841"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
