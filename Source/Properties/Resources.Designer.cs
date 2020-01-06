@@ -83,6 +83,16 @@ namespace JsonFlier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bookmark_32 {
+            get {
+                object obj = ResourceManager.GetObject("bookmark_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap calendar {
             get {
                 object obj = ResourceManager.GetObject("calendar", resourceCulture);
@@ -186,6 +196,16 @@ namespace JsonFlier.Properties {
         internal static System.Drawing.Bitmap minimize_16 {
             get {
                 object obj = ResourceManager.GetObject("minimize_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap open_32 {
+            get {
+                object obj = ResourceManager.GetObject("open_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
