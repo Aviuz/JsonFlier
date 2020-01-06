@@ -4,3 +4,9 @@
 
 # JsonFlier
 Windows Explorer of Json Arrays
+
+
+
+
+# Credits
+Icons were designed by myself or downloaded from flaticon.com / freepik.com under "free to use" license.
