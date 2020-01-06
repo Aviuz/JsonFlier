@@ -27,6 +27,8 @@ namespace JsonFlier.UserControls.Configuration
     {
         public AddToBookmarkWindow(string fileName, string filePath, IFileExplorer fileManager)
         {
+            Owner = Application.Current.MainWindow;
+
             InitializeComponent();
 
             FileName = fileName;
