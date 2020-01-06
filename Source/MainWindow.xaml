@@ -86,7 +86,7 @@
                 </MenuItem>
             </Menu>
         </Grid>
-        <toolbar:ToolBar x:Name="toolbar" DockPanel.Dock="Top" Height="32px"/>
+        <toolbar:ToolBarContainer x:Name="toolbar" DockPanel.Dock="Top" Height="32px"/>
         <DockPanel Background="#FFE4E4E4">
             <Grid Height="3" DockPanel.Dock="Top"/>
             <tabscontrol:ExtendedTabControl x:Name="extendedTabControl" />

@@ -1,4 +1,4 @@
-﻿using JsonFlier.Bookmarks;
+using JsonFlier.Bookmarks;
 using JsonFlier.UserControls.Configuration;
 using JsonFlier.UserControls.Logs;
 using JsonFlier.UserControls.TabsControl;
@@ -178,11 +178,11 @@ namespace JsonFlier
         {
             if (OpenedTab != null)
             {
-                toolbar.LoadToolbarActions(OpenedTab.ToolbarControls);
+                toolbar.LoadToolbarActions("TabActions", OpenedTab.ToolbarControls);
             }
             else
             {
-                toolbar.Clear();
+                toolbar.Clear("TabActions");
             }
         }
 

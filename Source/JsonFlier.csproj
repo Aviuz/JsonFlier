@@ -182,8 +182,8 @@
       <DependentUpon>SimpleAction.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Toolbar\Actions\TodayAction.cs" />
-    <Compile Include="UserControls\Toolbar\ToolBar.xaml.cs">
-      <DependentUpon>ToolBar.xaml</DependentUpon>
+    <Compile Include="UserControls\Toolbar\ToolBarContainer.xaml.cs">
+      <DependentUpon>ToolBarContainer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\JArrayParser.cs" />
     <Compile Include="Window\WindowResizer.cs" />
@@ -251,7 +251,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Toolbar\ToolBar.xaml">
+    <Page Include="UserControls\Toolbar\ToolBarContainer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

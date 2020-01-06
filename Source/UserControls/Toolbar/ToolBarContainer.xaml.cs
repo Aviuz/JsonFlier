@@ -20,24 +20,35 @@ namespace JsonFlier.UserControls.Toolbar
     /// <summary>
     /// Interaction logic for ToolBar.xaml
     /// </summary>
-    public partial class ToolBar : UserControl
+    public partial class ToolBarContainer : UserControl
     {
-        public ToolBar()
+        Dictionary<string, ToolBar> toolbars = new Dictionary<string, ToolBar>();
+
+        public ToolBarContainer()
         {
             InitializeComponent();
         }
 
-        public void LoadToolbarActions(Control[] controls)
+        public void LoadToolbarActions(string key, Control[] controls)
         {
-            toolbar.Items.Clear();
+            if (!toolbars.ContainsKey(key))
+            {
+                toolbars[key] = new ToolBar();
+                toolbarTray.ToolBars.Add(toolbars[key]);
+            }
+            else
+            {
+                toolbars[key].Items.Clear();
+            }
 
             foreach (var control in controls)
-                toolbar.Items.Add(control);
+                toolbars[key].Items.Add(control);
         }
 
-        public void Clear()
+        public void Clear(string key)
         {
-            toolbar.Items.Clear();
+            toolbarTray.ToolBars.Remove(toolbars[key]);
+            toolbars.Remove(key);
         }
     }
 }
