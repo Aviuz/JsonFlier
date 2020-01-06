@@ -44,6 +44,7 @@ namespace JsonFlier
 
             OpenStartUpBookmarks();
             OpenWelcomePage();
+            RefreshToolbar();
         }
 
         // Properties
