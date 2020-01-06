@@ -11,6 +11,8 @@ namespace JsonFlier.Command
 
         public IFileExplorer FileExplorer { get; }
 
+        public bool IsEnabled => true;
+
         public void Execute()
         {
             var dialog = new OpenFileDialog();

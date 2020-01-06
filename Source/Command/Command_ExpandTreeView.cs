@@ -11,6 +11,8 @@ namespace JsonFlier.Command
 
         public TreeView TreeView { get; }
 
+        public bool IsEnabled => TreeView != null;
+
         public void Execute()
         {
             foreach (TreeViewItem item in TreeView.Items)

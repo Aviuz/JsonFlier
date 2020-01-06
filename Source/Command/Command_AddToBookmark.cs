@@ -12,6 +12,7 @@ namespace JsonFlier.Command
 
         public IFileExplorer FileExplorer { get; }
 
+        public bool IsEnabled => FileExplorer.OpenedTab?.FilePath != null;
 
         public void Execute()
         {

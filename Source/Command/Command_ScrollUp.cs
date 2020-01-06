@@ -5,12 +5,14 @@ namespace JsonFlier.Command
 {
     public class Command_ScrollUp : ICommand
     {
-        public ListView ListView { get; set; }
-
         public Command_ScrollUp(ListView listView)
         {
             ListView = listView;
         }
+
+        public ListView ListView { get; set; }
+
+        public bool IsEnabled => true;
 
         public void Execute()
         {

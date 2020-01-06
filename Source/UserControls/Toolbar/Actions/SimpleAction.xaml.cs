@@ -25,6 +25,8 @@ namespace JsonFlier.UserControls.Toolbar.Actions
             InitializeComponent();
             Command = command;
 
+            IsEnabled = Command.IsEnabled;
+
             iconImage.Source = new BitmapImage(new Uri("/JsonFlier;component/Resources/" + iconName, UriKind.Relative));
         }
 

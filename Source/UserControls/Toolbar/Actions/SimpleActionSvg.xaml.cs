@@ -25,6 +25,8 @@ namespace JsonFlier.UserControls.Toolbar.Actions
             InitializeComponent();
             Command = command;
 
+            IsEnabled = Command.IsEnabled;
+
             svgPath.Data = Geometry.Parse(svgData);
         }
 

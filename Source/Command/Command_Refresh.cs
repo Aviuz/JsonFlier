@@ -11,6 +11,8 @@ namespace JsonFlier.Command
 
         public JsonArray JsonArrayControl { get; }
 
+        public bool IsEnabled => JsonArrayControl.CanRefresh;
+
         public void Execute()
         {
             JsonArrayControl.Refresh();

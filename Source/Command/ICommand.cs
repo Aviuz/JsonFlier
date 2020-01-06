@@ -8,6 +8,8 @@ namespace JsonFlier.Command
 {
     public interface ICommand
     {
+        bool IsEnabled { get; }
+
         void Execute();
     }
 }
