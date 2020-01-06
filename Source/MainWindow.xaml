@@ -48,9 +48,7 @@
                 <ColumnDefinition Width="28"/>
                 <ColumnDefinition Width="28"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" FontFamily="Magneto" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" FontStyle="Italic">
-                    JsonFlier
-            </TextBlock>
+            <Image Grid.Column="0" Source="/JsonFlier;component/Resources/AppIcon.ico" Width="32" Height="20"/>
             <Button Grid.Column="3" x:Name="MinButton" Click="MinButton_Click" Template="{StaticResource titleButton}">
                 <Grid Background="Transparent">
                     <Path Data="M0,0l2,0" Stroke="Black" Height="12px" Width="12px" Stretch="Fill"/>
