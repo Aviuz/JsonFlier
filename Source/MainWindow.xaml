@@ -6,7 +6,15 @@
         xmlns:toolbar="clr-namespace:JsonFlier.UserControls.Toolbar"
         xmlns:tabscontrol="clr-namespace:JsonFlier.UserControls.TabsControl"
         mc:Ignorable="d"
-        Title="Json Flier" Height="600" Width="1000" ResizeMode="CanResizeWithGrip" AllowsTransparency="False" WindowStyle="None" StateChanged="Window_StateChanged">
+        Title="Json Flier"
+        Height="600"
+        MinHeight="230"
+        Width="1000"
+        MinWidth="116"
+        ResizeMode="CanResizeWithGrip"
+        AllowsTransparency="False"
+        WindowStyle="None"
+        StateChanged="Window_StateChanged">
     <Window.Resources>
         <ControlTemplate x:Key="titleButton" TargetType="Button">
             <Grid Name="BackGrid">
@@ -42,49 +50,61 @@
         <Grid DockPanel.Dock="Top" Height="24px" MouseDown="Grid_MouseDown" Background="White">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="28"/>
-                <ColumnDefinition Width="28"/>
-                <ColumnDefinition Width="28"/>
+                <ColumnDefinition Width="Auto"  />
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Source="/JsonFlier;component/Resources/AppIcon.ico" Width="32" Height="20"/>
-            <Button Grid.Column="3" x:Name="MinButton" Click="MinButton_Click" Template="{StaticResource titleButton}">
-                <Grid Background="Transparent">
-                    <Path Data="M0,0l2,0" Stroke="Black" Height="12px" Width="12px" Stretch="Fill"/>
-                </Grid>
-                <!--<Image Source="/JsonFlier;component/Resources/minimize_16.png" Width="16px" Height="16px" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
-            </Button>
-            <Button Grid.Column="4" x:Name="MaxButton" Click="MaxButton_Click" Template="{StaticResource titleButton}">
-                <Grid Background="Transparent">
-                    <Path x:Name="sizeIcon" Data="M0,0L1,0L1,1L0,1L0,0L1,0"  Stroke="Black" Height="12px" Width="12px" Stretch="Fill"/>
-                </Grid>
-                <!--<Image Source="/JsonFlier;component/Resources/maximize_16.png" Width="16px" Height="16px" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
-            </Button>
-            <Button Grid.Column="5" x:Name="CloseButton" Click="CloseButton_Click" Template="{StaticResource closeButton}">
-                <Grid Background="Transparent">
-                    <Path Data="M0,0L1,1M1,0L0,1" Stroke="Black" Height="12px" Width="12px" Stretch="Fill"/>
-                </Grid>
-                <!--<Image Source="/JsonFlier;component/Resources/close_16.png" Width="16px" Height="16px" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
-            </Button>
-            <Menu Grid.Column="1" Background="Transparent" Padding="2">
-                <MenuItem Header="File" >
-                    <MenuItem x:Name="menuItemOpen" Header="Open" Click="OpenFile_Click"/>
-                    <Separator/>
-                    <MenuItem x:Name="menuItemRefresh" Header="Refresh" Click="MenuItemRefresh_Click" IsEnabled="False"/>
-                    <Separator/>
-                    <MenuItem x:Name="menuItemClose" Header="Close" Click="MenuItemClose_Click" IsEnabled="False"/>
-                </MenuItem>
-                <MenuItem x:Name="menuItemBookmark" Header="Bookmark">
-                    <MenuItem Header="Add to bookmark ..." Click="AddBookmark_Click"/>
-                    <MenuItem Header="Manage bookmarks" Click="BookmarksManagement_Click">
-                        <MenuItem.Icon>
-                            <Image Source="/JsonFlier;component/Resources/settings.png"/>
-                        </MenuItem.Icon>
+            <Grid Grid.Column="0">
+                <Image Source="/JsonFlier;component/Resources/AppIcon.ico" Width="32" Height="20"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="28"  />
+                    <ColumnDefinition Width="28" />
+                    <ColumnDefinition Width="28" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" x:Name="MinButton" Click="MinButton_Click" Template="{StaticResource titleButton}">
+                    <Grid Background="Transparent">
+                        <Path Data="M0,0l2,0" Stroke="Black" Height="12px" Width="12px" Stretch="Fill"/>
+                    </Grid>
+                    <!--<Image Source="/JsonFlier;component/Resources/minimize_16.png" Width="16px" Height="16px" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                </Button>
+                <Button Grid.Column="1" x:Name="MaxButton" Click="MaxButton_Click" Template="{StaticResource titleButton}">
+                    <Grid Background="Transparent">
+                        <Path x:Name="sizeIcon" Data="M0,0L1,0L1,1L0,1L0,0L1,0"  Stroke="Black" Height="12px" Width="12px" Stretch="Fill"/>
+                    </Grid>
+                    <!--<Image Source="/JsonFlier;component/Resources/maximize_16.png" Width="16px" Height="16px" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                </Button>
+                <Button Grid.Column="2" x:Name="CloseButton" Click="CloseButton_Click" Template="{StaticResource closeButton}">
+                    <Grid Background="Transparent">
+                        <Path Data="M0,0L1,1M1,0L0,1" Stroke="Black" Height="12px" Width="12px" Stretch="Fill"/>
+                    </Grid>
+                    <!--<Image Source="/JsonFlier;component/Resources/close_16.png" Width="16px" Height="16px" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                </Button>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Menu Grid.Column="0" Background="Transparent" Padding="2">
+                    <MenuItem Header="File" >
+                        <MenuItem x:Name="menuItemOpen" Header="Open" Click="OpenFile_Click"/>
+                        <Separator/>
+                        <MenuItem x:Name="menuItemRefresh" Header="Refresh" Click="MenuItemRefresh_Click" IsEnabled="False"/>
+                        <Separator/>
+                        <MenuItem x:Name="menuItemClose" Header="Close" Click="MenuItemClose_Click" IsEnabled="False"/>
                     </MenuItem>
-                    <Separator/>
-                </MenuItem>
-            </Menu>
+                    <MenuItem x:Name="menuItemBookmark" Header="Bookmark">
+                        <MenuItem Header="Add to bookmark ..." Click="AddBookmark_Click"/>
+                        <MenuItem Header="Manage bookmarks" Click="BookmarksManagement_Click">
+                            <MenuItem.Icon>
+                                <Image Source="/JsonFlier;component/Resources/settings.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator/>
+                    </MenuItem>
+                </Menu>
+            </Grid>
         </Grid>
         <toolbar:ToolBarContainer x:Name="toolbar" DockPanel.Dock="Top" Height="32px"/>
         <DockPanel Background="#FFE4E4E4">
