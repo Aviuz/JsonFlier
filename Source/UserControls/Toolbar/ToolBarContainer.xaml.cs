@@ -47,8 +47,11 @@ namespace JsonFlier.UserControls.Toolbar
 
         public void Clear(string key)
         {
-            toolbarTray.ToolBars.Remove(toolbars[key]);
-            toolbars.Remove(key);
+            if (toolbars.ContainsKey(key))
+            {
+                toolbarTray.ToolBars.Remove(toolbars[key]);
+                toolbars.Remove(key);
+            }
         }
     }
 }
