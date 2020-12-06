@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="JsonFlier.UIControls.LogTabs.JsonLog.LogEntry"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:JsonFlier.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:imagevectors="clr-namespace:JsonFlier.ImageVectors"
+             xmlns:local="clr-namespace:JsonFlier.UIControls.LogTabs.JsonLog"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Height="22"
+             d:DesignHeight="20"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <d:UserControl.DataContext>
+        <local:LogEntryViewModel />
+    </d:UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/UIControls/DefaultStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="entryBaseStyle" TargetType="Border">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="true">
+                        <Setter Property="BorderBrush" Value="Blue" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Border Background="Transparent">
+            <Grid VerticalAlignment="Stretch" Background="{Binding Level, Converter={StaticResource LogLevelToColorConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="22" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <imagevectors:VectorImage Grid.Column="0" Width="12" Height="12">
+                    <imagevectors:VectorImage.Source>
+                        <Binding Path="Image" Mode="OneWay" Converter="{StaticResource VectorSourceConverter}"/>
+                    </imagevectors:VectorImage.Source>
+                </imagevectors:VectorImage >
+                <TextBlock Grid.Column="1"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="12"
+                           FontStyle="{Binding FontStyle, Mode=OneWay}"
+                           FontWeight="{Binding FontWeight, Mode=OneTime}"
+                           Text="{Binding Date, Mode=OneTime}" />
+                <TextBlock Grid.Column="2"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="12"
+                           FontStyle="{Binding FontStyle, Mode=OneWay}"
+                           FontWeight="{Binding FontWeight, Mode=OneTime}"
+                           Text="{Binding Time, Mode=OneTime}" />
+                <TextBlock Grid.Column="3"
+                           VerticalAlignment="Center"
+                           FontSize="12"
+                           FontStyle="{Binding FontStyle, Mode=OneWay}"
+                           FontWeight="{Binding FontWeight, Mode=OneTime}"
+                           Text="{Binding Title, Mode=OneTime}" />
+            </Grid>
+            <Border.InputBindings>
+                <MouseBinding Command="{Binding SelectCommand}" Gesture="LeftClick" />
+            </Border.InputBindings>
+        </Border>
+        <Border BorderThickness="1" IsHitTestVisible="False" Style="{StaticResource entryBaseStyle}" />
+    </Grid>
+</UserControl>

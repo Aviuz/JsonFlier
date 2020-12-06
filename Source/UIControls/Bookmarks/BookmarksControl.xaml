@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="JsonFlier.UIControls.Bookmarks.BookmarksControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:JsonFlier.UIControls.Bookmarks"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <local:BookmarksViewModel/>
+    </UserControl.DataContext>
+    <DockPanel>
+        <Border DockPanel.Dock="Top" Padding="10 10 10 0" Background="White">
+            <StackPanel Orientation="Horizontal"  >
+                <Button Content="Add" Command="{Binding AddBookmarkCommand}" Padding="5 3"/>
+                <Button Content="Edit" Command="{Binding EditBookmarkCommand}" CommandParameter="{Binding SelectedBookmark}" Padding="5 3" Margin="10 0 0 0"/>
+                <Button Content="Delete" Command="{Binding DeleteBookmarkCommand}" CommandParameter="{Binding SelectedBookmark}" Padding="5 3" Margin="10 0 0 0"/>
+            </StackPanel>
+        </Border>
+        <Border Padding="10" Background="White">
+            <ListView ItemsSource="{Binding Bookmarks}" SelectedItem="{Binding SelectedBookmark}">
+                <ListView.View>
+                    <GridView x:Name="gridView2">
+                        <GridViewColumn  Width="150">
+                            <GridViewColumnHeader>
+                                <TextBlock Text="Name"/>
+                            </GridViewColumnHeader>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="200">
+                            <GridViewColumnHeader>
+                                <TextBlock Text="FilePaths"/>
+                            </GridViewColumnHeader>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FilePath}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100">
+                            <GridViewColumnHeader>
+                                <TextBlock Text="Opens on startup"/>
+                            </GridViewColumnHeader>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Path=OpenOnStartup, Mode=OneWay }" IsEnabled="False" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
+    </DockPanel>
+</UserControl>

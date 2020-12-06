@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="JsonFlier.UIControls.Main.MainControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:JsonFlier.UIControls.Main" 
+             xmlns:customtabcontrol="clr-namespace:JsonFlier.UIControls.CustomTabControl" 
+             xmlns:toolbars="clr-namespace:JsonFlier.UIControls.Toolbars" xmlns:i="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <d:UserControl.DataContext>
+        <local:MainControlViewModel/>
+    </d:UserControl.DataContext>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="33"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="1">
+            <customtabcontrol:TabControl DataContext="{Binding TabManager}"/>
+        </Border>
+        <Border Grid.Row="0" Background="White">
+            <toolbars:ToolbarTrayContainer DataContext="{Binding ToolbarTray}" />
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="JsonFlier.UIControls.LogTabs.JsonLog.JsonTreeView.TreeElementControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:JsonFlier.UIControls.LogTabs.JsonLog.JsonTreeView" 
+             xmlns:converters="clr-namespace:JsonFlier.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="400" d:Background="White">
+    <d:UserControl.DataContext>
+        <local:TreeElementViewModel/>
+    </d:UserControl.DataContext>
+    <UserControl.Resources>
+        <converters:IsCollapsedConverter x:Key="IsCollapsedConverter" />
+        <local:TreeViewCollapsedToAngleConverter x:Key="CollapsedToAngleConverter"/>
+        <ControlTemplate TargetType="Button" x:Key="simpleButtonTemplate">
+            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                <ContentPresenter />
+            </Border>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid Grid.Row="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border Visibility="{Binding HeaderHidden, Converter={StaticResource IsCollapsedConverter}}" Padding="0 3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" 
+                        Command="{Binding ToggleCollapseCommand}"
+                        Template="{StaticResource simpleButtonTemplate}"
+                        BorderBrush="{x:Null}"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        VerticalAlignment="Center"
+                        Visibility="{Binding CollapseDisabled, Converter={StaticResource IsCollapsedConverter}}">
+                    <Viewbox Width="8" Height="6" VerticalAlignment="Center" Stretch="Fill">
+                        <Viewbox.LayoutTransform>
+                            <RotateTransform x:Name="rotateTransform" 
+                                             Angle="{Binding IsCollapsed, Converter={StaticResource CollapsedToAngleConverter}}"
+                                             CenterX="4"
+                                             CenterY="3"/>
+                        </Viewbox.LayoutTransform>
+                        <Canvas Width="2" Height="1">
+                            <Path Data="M0,0 l2,0 -1,1" Fill="#949494"/>
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <TextBlock Grid.Column="2" Text="{Binding Name}" VerticalAlignment="Center"/>
+                <Border Grid.Column="3" Background="#F3F3F3" BorderBrush="#C5C5C5" BorderThickness="1" Padding="6 2" Margin="5 0 0 0">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Value}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBox Text="{Binding Value, Mode=OneWay}" 
+                               Background="Transparent" 
+                               BorderThickness="0" 
+                               IsReadOnly="True" 
+                               TextWrapping="Wrap"
+                               Foreground="#163FE2"/>
+                </Border>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Padding="25 0 0 0" Visibility="{Binding IsCollapsed, Converter={StaticResource IsCollapsedConverter}}">
+            <Grid>
+                <Border Background="#F3F3F3" BorderBrush="#C5C5C5" BorderThickness="1" Padding="6 2">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MultiLineValue}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBox Text="{Binding MultiLineValue, Mode=OneWay}" 
+                           Background="Transparent" 
+                           BorderThickness="0" 
+                           IsReadOnly="True" 
+                           TextWrapping="Wrap"
+                           Foreground="#163FE2"/>
+                </Border>
+                <ItemsControl ItemsSource="{Binding Elements}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:TreeElementControl />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+            <!--<StackPanel x:Name="childrenStackPanel" Orientation="Vertical"/>-->
+        </Border>
+    </Grid>
+</UserControl>

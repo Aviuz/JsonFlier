@@ -1,0 +1,602 @@
+[
+{
+  "title": "Test warningg",
+  "category": "Warning",
+  "dataType": "Text",
+  "date": "11.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "NullReferenceException",
+  "category": "Critical",
+  "dataType": "Exception",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": {
+    "ClassName": "System.NullReferenceException",
+    "Message": "Odwołanie do obiektu nie zostało ustawione na wystąpienie obiektu.",
+    "Data": null,
+    "InnerException": null,
+    "HelpURL": null,
+    "StackTraceString": null,
+    "RemoteStackTraceString": null,
+    "RemoteStackIndex": 0,
+    "ExceptionMethod": null,
+    "HResult": -2147467261,
+    "Source": null,
+    "WatsonBuckets": null
+  }
+},
+{
+  "title": "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
+  "category": "Warning",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "test"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "Array",
+  "category": "Critical",
+  "dataType": "Object",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": [[2,3,4], {"name": "test", "array":[3,4,5,6]}]
+},
+{
+  "title": "This is very long entry",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text, very long text"
+},
+{
+  "title": "asd",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "asdasd",
+  "category": "Critical",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "NullReferenceException",
+  "category": "Critical",
+  "dataType": "Exception",
+  "date": "12.09.2019",
+  "time": "17:31:19",
+  "data": {
+    "ClassName": "System.NullReferenceException",
+    "Message": "Odwołanie do obiektu nie zostało ustawione na wystąpienie obiektu.",
+    "Data": null,
+    "InnerException": null,
+    "HelpURL": null,
+    "StackTraceString": null,
+    "RemoteStackTraceString": null,
+    "RemoteStackIndex": 0,
+    "ExceptionMethod": null,
+    "HResult": -2147467261,
+    "Source": null,
+    "WatsonBuckets": null
+  }
+},
+{
+  "title": "Test warning",
+  "category": "Warning",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "test"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "title",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "very long text"
+},
+{
+  "title": "asd",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "asdasd",
+  "category": "Critical",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "NullReferenceException",
+  "category": "Critical",
+  "dataType": "Exception",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": {
+    "ClassName": "System.NullReferenceException",
+    "Message": "Odwołanie do obiektu nie zostało ustawione na wystąpienie obiektu.",
+    "Data": null,
+    "InnerException": null,
+    "HelpURL": null,
+    "StackTraceString": null,
+    "RemoteStackTraceString": null,
+    "RemoteStackIndex": 0,
+    "ExceptionMethod": null,
+    "HResult": -2147467261,
+    "Source": null,
+    "WatsonBuckets": null
+  }
+},
+{
+  "title": "Test warning",
+  "category": "Warning",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "test"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "title",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "very long text"
+},
+{
+  "title": "asd",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "asdasd",
+  "category": "Critical",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "NullReferenceException",
+  "category": "Critical",
+  "dataType": "Exception",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": {
+    "ClassName": "System.NullReferenceException",
+    "Message": "Odwołanie do obiektu nie zostało ustawione na wystąpienie obiektu.",
+    "Data": null,
+    "InnerException": null,
+    "HelpURL": null,
+    "StackTraceString": null,
+    "RemoteStackTraceString": null,
+    "RemoteStackIndex": 0,
+    "ExceptionMethod": null,
+    "HResult": -2147467261,
+    "Source": null,
+    "WatsonBuckets": null
+  }
+},
+{
+  "title": "Test warning",
+  "category": "Warning",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "test"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "title",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "very long text"
+},
+{
+  "title": "asd",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "asdasd",
+  "category": "Critical",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "NullReferenceException",
+  "category": "Critical",
+  "dataType": "Exception",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": {
+    "ClassName": "System.NullReferenceException",
+    "Message": "Odwołanie do obiektu nie zostało ustawione na wystąpienie obiektu.",
+    "Data": null,
+    "InnerException": null,
+    "HelpURL": null,
+    "StackTraceString": null,
+    "RemoteStackTraceString": null,
+    "RemoteStackIndex": 0,
+    "ExceptionMethod": null,
+    "HResult": -2147467261,
+    "Source": null,
+    "WatsonBuckets": null
+  }
+},
+{
+  "title": "Test warning",
+  "category": "Warning",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "test"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "title",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "very long text"
+},
+{
+  "title": "asd",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "asdasd",
+  "category": "Critical",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "NullReferenceException",
+  "category": "Critical",
+  "dataType": "Exception",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": {
+    "ClassName": "System.NullReferenceException",
+    "Message": "Odwołanie do obiektu nie zostało ustawione na wystąpienie obiektu.",
+    "Data": null,
+    "InnerException": null,
+    "HelpURL": null,
+    "StackTraceString": null,
+    "RemoteStackTraceString": null,
+    "RemoteStackIndex": 0,
+    "ExceptionMethod": null,
+    "HResult": -2147467261,
+    "Source": null,
+    "WatsonBuckets": null
+  }
+},
+{
+  "title": "Test warning",
+  "category": "Warning",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "test"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "title",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "very long text"
+},
+{
+  "title": "asd",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "asdasd",
+  "category": "Critical",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "NullReferenceException",
+  "category": "Critical",
+  "dataType": "Exception",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": {
+    "ClassName": "System.NullReferenceException",
+    "Message": "Odwołanie do obiektu nie zostało ustawione na wystąpienie obiektu.",
+    "Data": null,
+    "InnerException": null,
+    "HelpURL": null,
+    "StackTraceString": null,
+    "RemoteStackTraceString": null,
+    "RemoteStackIndex": 0,
+    "ExceptionMethod": null,
+    "HResult": -2147467261,
+    "Source": null,
+    "WatsonBuckets": null
+  }
+},
+{
+  "title": "Test warning",
+  "category": "Warning",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "test"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "title",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "very long text"
+},
+{
+  "title": "asd",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "asdasd",
+  "category": "Critical",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "NullReferenceException",
+  "category": "Critical",
+  "dataType": "Exception",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": {
+    "ClassName": "System.NullReferenceException",
+    "Message": "Odwołanie do obiektu nie zostało ustawione na wystąpienie obiektu.",
+    "Data": null,
+    "InnerException": null,
+    "HelpURL": null,
+    "StackTraceString": null,
+    "RemoteStackTraceString": null,
+    "RemoteStackIndex": 0,
+    "ExceptionMethod": null,
+    "HResult": -2147467261,
+    "Source": null,
+    "WatsonBuckets": null
+  }
+},
+{
+  "title": "Test warning",
+  "category": "Warning",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "test"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "title",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "very long text"
+},
+{
+  "title": "asd",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "asdasd",
+  "category": "Critical",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "NullReferenceException",
+  "category": "Critical",
+  "dataType": "Exception",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": {
+    "ClassName": "System.NullReferenceException",
+    "Message": "Odwołanie do obiektu nie zostało ustawione na wystąpienie obiektu.",
+    "Data": null,
+    "InnerException": null,
+    "HelpURL": null,
+    "StackTraceString": null,
+    "RemoteStackTraceString": null,
+    "RemoteStackIndex": 0,
+    "ExceptionMethod": null,
+    "HResult": -2147467261,
+    "Source": null,
+    "WatsonBuckets": null
+  }
+},
+{
+  "title": "Test warning",
+  "category": "Warning",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "test"
+},
+{
+  "title": "Test trace",
+  "category": "Trace",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "title",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19",
+  "data": "very long text"
+},
+{
+  "title": "asd",
+  "category": "Info",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+},
+{
+  "title": "asdasd",
+  "category": "Critical",
+  "dataType": "Text",
+  "date": "12.09.2019",
+  "time": "17:01:19"
+}
+]

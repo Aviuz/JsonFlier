@@ -1,0 +1,27 @@
+﻿<Window x:Class="JsonFlier.UIControls.Bookmarks.BookmarkDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JsonFlier.UIControls.Bookmarks"
+        mc:Ignorable="d"
+        Title="BookmarkDetailsWindow" Height="208" Width="376" ResizeMode="NoResize">
+    <Window.DataContext>
+        <local:SingleBookmarkViewModel/>
+    </Window.DataContext>
+    <Border Padding="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0">
+                <local:BookmarkDetailsControl />
+            </Border>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Click="Ok_OnClick" Padding="5 3">Ok</Button>
+                <Button Click="Cancel_OnClick" Margin="10 0 0 0" Padding="5 3">Cancel</Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="JsonFlier.UIControls.StartPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:imagevectors="clr-namespace:JsonFlier.ImageVectors"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:uicontrols="clr-namespace:JsonFlier.UIControls"
+             x:Name="startPage"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <d:UserControl.DataContext>
+        <uicontrols:StartPageViewModel />
+    </d:UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/UIControls/DefaultStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <ControlTemplate TargetType="Button" x:Key="StartPageButton">
+                <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                    <ContentPresenter />
+                </Border>
+            </ControlTemplate>
+            <Style TargetType="Button">
+                <Style.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="White"/>
+                    </Style>
+                    <Style TargetType="imagevectors:VectorImage">
+                        <Setter Property="Color" Value="White"/>
+                    </Style>
+                </Style.Resources>
+                <Setter Property="Template" Value="{StaticResource StartPageButton}"/>
+                <Setter Property="Margin" Value="10,10,10,0" />
+                <Setter Property="Padding" Value="10 5" />
+                <Setter Property="Background" Value="#FF2976BD" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="#FF3C8BD4" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Padding="20" Background="#DDD">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Grid.Column="0" Padding="10 0" Background="White">
+                <TextBlock FontSize="24" Text="Bookmarks" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="0" Padding="10" Background="White">
+                <ListView Background="Transparent" BorderThickness="0" ItemsSource="{Binding Bookmarks}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                                <Button Command="{Binding Path=DataContext.OpenBookmarkCommand, ElementName=startPage}" CommandParameter="{Binding}">
+                                <Border HorizontalAlignment="Left">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock >
+                                        <Run FontSize="14" Text="{Binding Name}" />
+                                        <LineBreak />
+                                        <Run FontSize="9" Text="{Binding FilePaths[0]}" Foreground="#DDD"/>
+                                    </TextBlock>
+                                    </StackPanel>
+                                </Border>
+                                </Button>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                        <ContentPresenter />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </Border>
+            <Border Grid.Row="0" Grid.Column="2" Padding="10 0" Background="White">
+                <TextBlock FontSize="24" Text="Actions" />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="2" Padding="10" Background="White">
+                <StackPanel>
+                    <Button HorizontalAlignment="Left" Padding="15 8" Command="{Binding OpenFileCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <imagevectors:VectorImage Height="18" Margin="0,0,8,0" Source="{StaticResource FolderVector}" />
+                            <TextBlock Text="Open File" FontSize="18" />
+                        </StackPanel>
+                    </Button>
+                    <Button HorizontalAlignment="Left" Padding="15 8" Command="{Binding ManageBookmarksCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <imagevectors:VectorImage Height="18" Margin="0,0,8,0" Source="{StaticResource StarVector}" />
+                            <TextBlock Text="Manage Bookmarks" FontSize="18" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>
